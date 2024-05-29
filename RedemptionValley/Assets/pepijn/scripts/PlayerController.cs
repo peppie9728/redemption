@@ -35,7 +35,15 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
+    private void Update()
+    {
+        HandleMovement();
+    }
 
+    public void FixedUpdate()
+    {
+        Move();
+    }
 
     public void Move()
     {
@@ -69,14 +77,19 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Update()
+    public float GetHealth()
     {
-        HandleMovement();
+        return health;
     }
 
-    public void FixedUpdate()
+    public void SetHealth(float input)
     {
-        Move();
+        health = input;
+    }
+
+    public void AddHealth(float input)
+    {
+        health += input;
     }
 
 
