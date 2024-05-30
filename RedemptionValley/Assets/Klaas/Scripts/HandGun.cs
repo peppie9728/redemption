@@ -9,6 +9,7 @@ public class HandGun : WeaponClass
     {
         damage = 5;
         fireRate = 5;
+        ammo = 32;
     }
 
     // Update is called once per frame

@@ -7,6 +7,7 @@ public abstract class WeaponClass : MonoBehaviour
     [Header("Weapon")]
     public string weaponName;
     public int damage;
+    public int ammo;
     public float fireRate = 5;
     public float fireCoolDown = 1f;
     [Header("Bullet")]
@@ -22,6 +23,7 @@ public abstract class WeaponClass : MonoBehaviour
         Debug.Log("Fire");
         if (fireTarget != null)
         {
+            ammo -= 1;
             GameObject firedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
             Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
 
@@ -50,7 +52,7 @@ public abstract class WeaponClass : MonoBehaviour
             }
         }
         fireCoolDown -= Time.deltaTime;
-        if (Input.GetButtonDown("Fire1") && fireCoolDown <= 0) // Change The Input To The Arcade Input
+        if (Input.GetButtonDown("Fire1") && fireCoolDown <= 0 && ammo > 0) // Change The Input To The Arcade Input
         {
             Fire();
             fireCoolDown = 5f / fireRate;
