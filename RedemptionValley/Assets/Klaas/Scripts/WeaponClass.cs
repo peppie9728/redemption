@@ -19,11 +19,15 @@ public class WeaponClass : MonoBehaviour
     public LayerMask layerMask;
     public void Fire()
     {
-        GameObject firedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
-        firedBullet.GetComponent<Bullet>().target = fireTarget;
+        Debug.Log("Fire");
+        if (fireTarget != null)
+        {
+            GameObject firedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+            Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
 
-        Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletforce, ForceMode2D.Impulse); // firepoint moet locatie van een enemy zijn
+            Vector2 direction = (fireTarget.position - firePoint.position).normalized;
+            rb.AddForce(direction * bulletforce, ForceMode2D.Impulse);
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -35,13 +39,26 @@ public class WeaponClass : MonoBehaviour
     void Update()
     {
 
-        hitColliders = Physics2D.OverlapCircleAll(transform.position, 10f, layerMask);
-       
-        if(hitColliders.Length > 0)
+        hitColliders = Physics2D.OverlapCircleAll(transform.position, 10f,layerMask);
+
+        if (hitColliders.Length > 0)
         {
-            fireTarget = hitColliders[0].transform;
+            
+            fireTarget = null;
+            float closestDistance = Mathf.Infinity;
+
+            foreach (Collider2D hitCollider in hitColliders)
+            {
+                float distance = Vector2.Distance(transform.position, hitCollider.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    fireTarget = hitCollider.transform;
+                }
+            }
         }
-        if(Input.GetButtonDown("Fire1")) // Change The Input To The Arcade Input
+
+        if (Input.GetMouseButtonDown(1)) // Change The Input To The Arcade Input
         {
             Fire();
         }
