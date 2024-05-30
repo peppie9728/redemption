@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponClass : MonoBehaviour
+public abstract class WeaponClass : MonoBehaviour
 {
     [Header("Weapon")]
     public string weaponName;
     public int damage;
     public float fireRate = 5;
-
+    public float fireCoolDown = 1f;
     [Header("Bullet")]
     public GameObject bullet;
     public float bulletforce;
     public Transform firePoint;
 
-   public Transform fireTarget;
+    public Transform fireTarget;
     public Collider2D[] hitColliders;
     public LayerMask layerMask;
     public void Fire()
@@ -29,21 +29,13 @@ public class WeaponClass : MonoBehaviour
             rb.AddForce(direction * bulletforce, ForceMode2D.Impulse);
         }
     }
-    // Start is called before the first frame update
-    void Start()
+    public void CheckTargets()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        hitColliders = Physics2D.OverlapCircleAll(transform.position, 10f,layerMask);
+        hitColliders = Physics2D.OverlapCircleAll(transform.position, 10f, layerMask);
 
         if (hitColliders.Length > 0)
         {
-            
+
             fireTarget = null;
             float closestDistance = Mathf.Infinity;
 
@@ -57,12 +49,25 @@ public class WeaponClass : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetMouseButtonDown(1)) // Change The Input To The Arcade Input
+        fireCoolDown -= Time.deltaTime;
+        if (Input.GetButtonDown("Fire1") && fireCoolDown <= 0) // Change The Input To The Arcade Input
         {
             Fire();
+            fireCoolDown = 5f / fireRate;
         }
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+
+    }
 
 }

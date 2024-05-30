@@ -1684,7 +1684,6 @@ MonoBehaviour:
   fireTarget: {fileID: 0}
   hitColliders: []
   layerMask:
-    serializedVersion: 2
     m_Bits: 64
 --- !u!4 &789134983
 Transform:
@@ -1770,7 +1769,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1070457707137246869, guid: 1da5da32c16e37e49903674515578b35, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1252034341}
+      addedObject: {fileID: 1252034351}
   m_SourcePrefab: {fileID: 100100000, guid: 1da5da32c16e37e49903674515578b35, type: 3}
 --- !u!1 &937032942
 GameObject:
@@ -5385,7 +5384,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1070457707137246869, guid: 1da5da32c16e37e49903674515578b35, type: 3}
   m_PrefabInstance: {fileID: 895013739}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1252034341
+--- !u!4 &1252034346 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2191604683931951603, guid: 1da5da32c16e37e49903674515578b35, type: 3}
+  m_PrefabInstance: {fileID: 895013739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1252034351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5394,25 +5398,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1252034340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c068d601bcfc8479617faec5fb7f9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 685e8a8299f775f419a38824d53ac661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Pistol
   damage: 0
-  fireRate: 2.5
+  fireRate: 5.62
+  fireCoolDown: 2
   bullet: {fileID: 5974495147777525974, guid: 0bee88d118a0cc6428f59254b135f284, type: 3}
-  bulletforce: 20
+  bulletforce: 10
   firePoint: {fileID: 497900346}
   fireTarget: {fileID: 0}
   hitColliders: []
   layerMask:
     serializedVersion: 2
     m_Bits: 64
---- !u!4 &1252034346 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2191604683931951603, guid: 1da5da32c16e37e49903674515578b35, type: 3}
-  m_PrefabInstance: {fileID: 895013739}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1301914436
 GameObject:
   m_ObjectHideFlags: 0

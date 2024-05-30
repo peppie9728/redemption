@@ -15,6 +15,6 @@ public class Zombie : Enemy
 
     public override void Move()
     {
-       // rb.velocity();
+       // rb.velocity(); 
     }
 }
