@@ -7,9 +7,17 @@ public abstract class Enemy : MonoBehaviour
     public float health;
     public float moveSpeed;
     public float damage;
-    GameObject target;
+    [SerializeField]
+    protected GameObject target;
+    [SerializeField]
+    protected Rigidbody2D rb;
 
     private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
     {
         FindTarget();
     }
@@ -40,15 +48,20 @@ public abstract class Enemy : MonoBehaviour
     public void FindTarget()
     {
         GameObject[] targetsTemp = GameObject.FindGameObjectsWithTag("Player");
-        float value;
-        foreach (GameObject i in targetsTemp)
+        if (targetsTemp.Length > 1)
         {
-            float distanceBetween = Vector2.Distance(i.transform.position, this.transform.position);
-            if (distanceBetween != 0)
+            if (Vector2.Distance(targetsTemp[0].transform.position,transform.position) < Vector2.Distance(targetsTemp[1].transform.position, transform.position))
             {
-
+                target = targetsTemp[0];
+            }
+            else
+            {
+                target = targetsTemp[1];
             }
         }
-
+        else
+        {
+            target = targetsTemp[0];
+        }
     }
 }

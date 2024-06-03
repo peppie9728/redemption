@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Zombie : Enemy
 {
-    Rigidbody2D rb;
+    
     
     
     
@@ -15,6 +15,17 @@ public class Zombie : Enemy
 
     public override void Move()
     {
-        rb.velocity();
+        if (target != null)
+        {
+            Vector2 temp = target.transform.position - transform.position;
+            temp = temp.normalized;
+            rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
+        }   
     }
+
+    private void Update()
+    {
+        Move();
+    }
+
 }
