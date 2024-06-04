@@ -14,10 +14,13 @@ public abstract class WeaponClass : MonoBehaviour
     public GameObject bullet;
     public float bulletforce;
     public Transform firePoint;
-
+    [Header("Target")]
     public Transform fireTarget;
     public Collider2D[] hitColliders;
     public LayerMask layerMask;
+
+    public UIManager uiManager;
+ 
     public void Fire()
     {
         Debug.Log("Fire");
@@ -29,6 +32,7 @@ public abstract class WeaponClass : MonoBehaviour
 
             Vector2 direction = (fireTarget.position - firePoint.position).normalized;
             rb.AddForce(direction * bulletforce, ForceMode2D.Impulse);
+            uiManager.UpdateAmmo();
         }
     }
     public void CheckTargets()
@@ -59,11 +63,6 @@ public abstract class WeaponClass : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

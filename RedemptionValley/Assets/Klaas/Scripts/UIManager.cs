@@ -8,20 +8,21 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("Player Check")]
-    public bool isPlayerOne;
-    [Header("Player One")]
-    public Image playerOneHealthBar;
+    [Header("Player Ammo")]
+    public TextMeshProUGUI ammoText;
 
-    // Start is called before the first frame update
-    void Start()
+    [Header("Player Script")]
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private WeaponClass currentWeapon;
+
+    private void Start()
     {
-        
+        gameObject.TryGetComponent<WeaponClass>(out currentWeapon);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void UpdateAmmo()
     {
-        
+        ammoText.text = $"{currentWeapon.ammo}";
     }
 }
