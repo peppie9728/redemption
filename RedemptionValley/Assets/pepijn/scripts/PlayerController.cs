@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class PlayerController : MonoBehaviour
 {
+    [Header("Health Bar")]
+    public Slider playerHealthBar;
     //this is the player controllerr everything that the player can do happens here.
 
     [Header("player variables")]
@@ -85,12 +88,15 @@ public class PlayerController : MonoBehaviour
     public void SetHealth(float input)
     {
         health = input;
+        playerHealthBar.value = health;
     }
 
     public void AddHealth(float input)
     {
         health += input;
+        playerHealthBar.value = health;
     }
+
 
 
 }
