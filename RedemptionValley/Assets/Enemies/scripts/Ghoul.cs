@@ -6,26 +6,35 @@ public class Ghoul : Enemy
 {
     public Vector2 direction;
     Transform spawnPoint;
-    Transform endPoint;
-
+    float endPoint;
 
 
     public override void Attack()
     {
-        throw new System.NotImplementedException();
+        target.GetComponent<PlayerController>().AddHealth(-damage);
     }
 
     public override void Move()
     {
-        rb.velocity = direction * moveSpeed * Time.deltaTime;
+        rb.velocity = new Vector2(direction.x * moveSpeed * Time.fixedDeltaTime, direction.y * moveSpeed * Time.fixedDeltaTime);
+        
     }
 
     void Update()
     {
         if (target != null && direction.magnitude == 0)
         {
-            direction = target.transform.position.normalized;
+            direction = target.transform.position - transform.position;
+            direction = direction.normalized;
         }
         Move();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            Attack();
+        }
     }
 }

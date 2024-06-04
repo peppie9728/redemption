@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7966530987932438239}
   - component: {fileID: 6624407677086485024}
   - component: {fileID: 62805424040786592}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,14 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4239d5a61efb4c4d8e6e5e39940d012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealthBar: {fileID: 0}
   moveSpeed: 100
-  sprintSpeed: 2
+  sprintSpeed: 383.2
   health: 10
   stamina: 10
   staminaLoss: 1
   horizontalName: Horizontal 2
   verticalName: Vertical 2
-  sprintButton: 
+  sprintButton: left shift
 --- !u!50 &6624407677086485024
 Rigidbody2D:
   serializedVersion: 4

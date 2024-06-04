@@ -10,9 +10,7 @@ public class Zombie : Enemy
     
     public override void Attack()
     {
-        PlayerController player = target.GetComponent<PlayerController>();
-
-        player.AddHealth(-damage);
+        target.GetComponent<PlayerController>().AddHealth(-damage);
     }
 
     public override void Move()
