@@ -10,7 +10,9 @@ public class Zombie : Enemy
     
     public override void Attack()
     {
-        throw new System.NotImplementedException();
+        PlayerController player = target.GetComponent<PlayerController>();
+
+        player.AddHealth(-damage);
     }
 
     public override void Move()
@@ -28,4 +30,13 @@ public class Zombie : Enemy
         Move();
     }
 
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Attack();
+        }
+    }
 }
