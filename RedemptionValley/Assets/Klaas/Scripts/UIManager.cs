@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         gameObject.TryGetComponent<WeaponClass>(out currentWeapon);
+        ammoText.text = $"currentWeapon.ammo";
     }
 
 

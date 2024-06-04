@@ -18,4 +18,17 @@ public class HandGun : WeaponClass
     {
         CheckTargets();
     }
+
+    public void UpgradeOne()
+    {
+        /*
+         * big damage gun, deze upgrade path heeft een lagere fire rate maar een significant hogere damage.
+         */
+    }
+    public void UpgradeTwo()
+    {
+        /*
+         * high firerate gun, deze upgrade path heeft een stuk hogere attack speed en minder damage
+         */
+    }
 }
