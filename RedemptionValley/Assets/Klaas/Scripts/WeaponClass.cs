@@ -67,18 +67,23 @@ public abstract class WeaponClass : MonoBehaviour
         else { fireTarget = dontAsk; }
       
     }
-
     public void FireSpread()
     {
         if (fireTarget != null)
         {
+            Vector3 spreadOffset = new Vector3(0, -0.2f, 0);
             ammo -= 1;
-            GameObject firedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
-            Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
+            for (int i = 0; i < 3; i++)
+            {
 
-            Vector2 direction = (fireTarget.position - firePoint.position).normalized;
-            rb.AddForce(direction * bulletforce, ForceMode2D.Impulse);
-            uiManager.UpdateAmmo();
+                GameObject firedBullet = Instantiate(bullet, firePoint.position + spreadOffset, firePoint.rotation);
+                Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
+
+                Vector2 direction = (fireTarget.position - firePoint.position).normalized;
+                rb.AddForce(direction * bulletforce, ForceMode2D.Impulse);
+                spreadOffset.y += 0.2f;
+            }
+             uiManager.UpdateAmmo();
         }
     }
     // Update is called once per frame
