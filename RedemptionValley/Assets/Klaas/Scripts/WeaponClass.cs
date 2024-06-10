@@ -1,27 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum CurrentUpgrade
+{ 
+    Basic,UpdrageOne,UpgradeTwo
+}
 public abstract class WeaponClass : MonoBehaviour
 {
-    [Header("Weapon")]
+    [Header("UI Info")]
     public string weaponName;
+    public Sprite weaponSprite;
+    [Header("Weapon")]
     public int damage;
-    public int ammo;
     public float fireRate = 5;
     public float fireCoolDown = 1f;
+    [Header("Ammo")]
+    public uint ammo;
+    //public int minAmmo;
+    //public int mamAmmo;
     [Header("Bullet")]
     public GameObject bullet;
     public float bulletforce;
     public Transform firePoint;
     [Header("Target")]
+    [SerializeField]private Transform dontAsk;
     public Transform fireTarget;
     public Collider2D[] hitColliders;
     public LayerMask layerMask;
-
     public UIManager uiManager;
- 
-    public void Fire()
+    [Header("Current Weapon State")]
+    public CurrentUpgrade currentUpgrade;
+    public void FireBasic()
     {
         Debug.Log("Fire");
         if (fireTarget != null)
@@ -55,15 +64,23 @@ public abstract class WeaponClass : MonoBehaviour
                 }
             }
         }
-        fireCoolDown -= Time.deltaTime;
-        if (Input.GetButtonDown("Fire1") && fireCoolDown <= 0 && ammo > 0) // Change The Input To The Arcade Input
-        {
-            Fire();
-            fireCoolDown = 5f / fireRate;
-        }
+        else { fireTarget = dontAsk; }
+      
     }
 
+    public void FireSpread()
+    {
+        if (fireTarget != null)
+        {
+            ammo -= 1;
+            GameObject firedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+            Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
 
+            Vector2 direction = (fireTarget.position - firePoint.position).normalized;
+            rb.AddForce(direction * bulletforce, ForceMode2D.Impulse);
+            uiManager.UpdateAmmo();
+        }
+    }
     // Update is called once per frame
     void Update()
     {

@@ -38,8 +38,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Movement Animation")]
     public Animator playerAnimator;
-    public KeyCode[] playerInput;
-    private KeyCode input;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
