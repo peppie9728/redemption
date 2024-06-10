@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+
 public class PlayerController : MonoBehaviour
 {
     [Header("Health Bar")]
@@ -34,9 +36,14 @@ public class PlayerController : MonoBehaviour
     float inputVertical;
     //inventory
 
+    [Header("Player Movement Animation")]
+    public Animator playerAnimator;
+    public KeyCode[] playerInput;
+    private KeyCode input;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+       
     }
     private void Update()
     {
@@ -46,10 +53,14 @@ public class PlayerController : MonoBehaviour
     public void FixedUpdate()
     {
         Move();
+       
+     
+        
     }
 
     public void Move()
     {
+
         if (isSprinting && stamina > 0)
         {
             rb.velocity = new Vector2(inputHorizontal * sprintSpeed * Time.fixedDeltaTime,inputVertical * sprintSpeed * Time.fixedDeltaTime);
@@ -63,6 +74,9 @@ public class PlayerController : MonoBehaviour
         {
             stamina += staminaLoss * Time.deltaTime;
         }
+
+        playerAnimator.SetFloat("x", inputHorizontal);
+        playerAnimator.SetFloat("y", inputVertical);
     }
 
     public void HandleMovement()

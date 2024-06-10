@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class MeleeClass : MonoBehaviour
 {
+    [Header("Basic Melee")]
+    public GameObject hitCollider;
+    public float attackSpeed;
+    public int meleeDamage;
+
+    [Header("")]
+    public float attackDelay = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -11,8 +18,35 @@ public class MeleeClass : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
+    { 
+        attackDelay -= Time.deltaTime;
+        if(attackDelay <0)
+        {
+            StartCoroutine(AttackDelay());
+            attackDelay = 3;
+
+        } 
+    }
+    public void MeleeAttack()
     {
-        
+      
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            Destroy(collision.gameObject);
+            //gameObject.GetComponent<Enemy>().health -= meleeDamage;
+        }
+    }
+
+    IEnumerator AttackDelay()
+    {
+        hitCollider.SetActive(true);
+        yield return new WaitForSeconds(attackSpeed);
+        hitCollider.SetActive(false);
+        attackSpeed = 0.5f;
     }
 }
