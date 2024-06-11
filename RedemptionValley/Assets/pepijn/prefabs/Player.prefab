@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7966530987932438239}
   - component: {fileID: 6624407677086485024}
   - component: {fileID: 62805424040786592}
+  - component: {fileID: 3535911594396961697}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 5190879868320599037, guid: d90d7a221c51b3d47a20a1c27617d7c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,7 +135,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &62805424040786592
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -180,3 +181,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3535911594396961697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070457707137246869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685e8a8299f775f419a38824d53ac661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: handgun
+  damage: 10
+  ammo: 32
+  fireRate: 5
+  fireCoolDown: 1
+  bullet: {fileID: 5974495147777525974, guid: 0bee88d118a0cc6428f59254b135f284, type: 3}
+  bulletforce: 0
+  firePoint: {fileID: 2191604683931951603}
+  fireTarget: {fileID: 0}
+  hitColliders: []
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  uiManager: {fileID: 0}
