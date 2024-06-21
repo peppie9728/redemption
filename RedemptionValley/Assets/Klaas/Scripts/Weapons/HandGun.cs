@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HandGun : WeaponClass
@@ -7,10 +8,12 @@ public class HandGun : WeaponClass
  
     void Start()
     {
-        gameObject.TryGetComponent<UIManager>(out uiManager);
+        GameObject.FindGameObjectWithTag("Player").TryGetComponent<UIManager>(out uiManager);
+      //  gameObject.TryGetComponent<UIManager>(out uiManager);
         damage = 5;
         fireRate = 5;
         ammo = 32;
+        ChangeWeaponSprite();
     }
 
     // Update is called once per frame

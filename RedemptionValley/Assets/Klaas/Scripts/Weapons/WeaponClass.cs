@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public enum CurrentUpgrade
 { 
@@ -7,6 +8,9 @@ public enum CurrentUpgrade
 }
 public abstract class WeaponClass : MonoBehaviour
 {
+    public static event HandleEnemyTransform OnClosestEnemy;
+    public delegate void HandleEnemyTransform(Transform enemyPosition);
+
     [Header("UI Info")]
     public string weaponName;
     public Sprite weaponSprite;
@@ -61,10 +65,11 @@ public abstract class WeaponClass : MonoBehaviour
                 {
                     closestDistance = distance;
                     fireTarget = hitCollider.transform;
+                    OnClosestEnemy?.Invoke(hitCollider.transform);
                 }
             }
         }
-        else { fireTarget = dontAsk; }
+        else { fireTarget = dontAsk; OnClosestEnemy?.Invoke(null); }
       
     }
     public void FireSpread()
@@ -85,6 +90,11 @@ public abstract class WeaponClass : MonoBehaviour
             }
              uiManager.UpdateAmmo();
         }
+    }
+    public void ChangeWeaponSprite()
+    {
+       gameObject.GetComponent<SpriteRenderer>().sprite = weaponSprite;
+
     }
     // Update is called once per frame
     void Update()

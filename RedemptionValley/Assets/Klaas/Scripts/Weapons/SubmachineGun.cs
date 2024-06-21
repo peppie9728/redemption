@@ -11,6 +11,7 @@ public class SubmachineGun : WeaponClass
         damage = 2;
         fireRate = 10;
         ammo = 100;
+        ChangeWeaponSprite();
     }
 
     // Update is called once per frame
