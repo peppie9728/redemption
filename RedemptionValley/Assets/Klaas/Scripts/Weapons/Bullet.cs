@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float bulletLife = 1.5f;
     public Transform target;
-
+    
     //public float speed = 8f;
     //public float rotateSpeed = 99999f;
 
@@ -42,11 +42,13 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.layer == 6)
         {
             Destroy(collision.gameObject);
-            Destroy(gameObject);
+           // Destroy(gameObject);
         }
+        Destroy(this.gameObject);
         /*
          *Add Code To Damage Enemy
          */

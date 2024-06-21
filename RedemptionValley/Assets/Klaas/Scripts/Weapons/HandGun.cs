@@ -32,7 +32,9 @@ public class HandGun : WeaponClass
                 case CurrentUpgrade.UpgradeTwo:
                     break;
 
-                default: break;
+                default:
+                    FireBasic();
+                    break;
             }
             fireCoolDown = 5f / fireRate;
         }

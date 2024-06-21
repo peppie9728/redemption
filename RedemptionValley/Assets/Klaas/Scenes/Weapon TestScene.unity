@@ -1532,7 +1532,7 @@ Transform:
   m_GameObject: {fileID: 497900345}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.77, y: 0, z: 0}
+  m_LocalPosition: {x: -0.01, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2075,6 +2075,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1070457707137246869, guid: 1da5da32c16e37e49903674515578b35, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1252034367}
+    - targetCorrespondingSourceObject: {fileID: 1070457707137246869, guid: 1da5da32c16e37e49903674515578b35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1252034372}
     - targetCorrespondingSourceObject: {fileID: 1070457707137246869, guid: 1da5da32c16e37e49903674515578b35, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1252034362}
@@ -6394,7 +6397,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252034340}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 376cb4cfce660144e84abd2918cb5e4f, type: 3}
   m_Name: 
@@ -6404,6 +6407,35 @@ MonoBehaviour:
   damage: 0
   fireRate: 56.1
   fireCoolDown: 1
+  ammo: 0
+  bullet: {fileID: 5974495147777525974, guid: 0bee88d118a0cc6428f59254b135f284, type: 3}
+  bulletforce: 20
+  firePoint: {fileID: 497900346}
+  dontAsk: {fileID: 361519451}
+  fireTarget: {fileID: 0}
+  hitColliders: []
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  uiManager: {fileID: 0}
+  currentUpgrade: 0
+--- !u!114 &1252034372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252034340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573fcc3233f22ed47a1dbc23e632d14f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: 
+  weaponSprite: {fileID: 0}
+  damage: 23
+  fireRate: 7.1
+  fireCoolDown: 3.08
   ammo: 0
   bullet: {fileID: 5974495147777525974, guid: 0bee88d118a0cc6428f59254b135f284, type: 3}
   bulletforce: 20

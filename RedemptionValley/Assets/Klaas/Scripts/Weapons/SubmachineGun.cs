@@ -18,9 +18,24 @@ public class SubmachineGun : WeaponClass
     {
         CheckTargets();
         fireCoolDown -= Time.deltaTime;
-        if (Input.GetButtonDown("Fire1") && fireCoolDown <= 0 && ammo > 0) // Change The Input To The Arcade Input
+        if (Input.GetButton("Fire1") && fireCoolDown <= 0 && ammo > 0) // Change The Input To The Arcade Input
         {
-            FireSpread();
+            switch (currentUpgrade)
+            {
+                case CurrentUpgrade.Basic:
+                    FireBasic();
+                    break;
+
+                case CurrentUpgrade.UpdrageOne:
+                    break;
+
+                case CurrentUpgrade.UpgradeTwo:
+                    break;
+
+                default:
+                    FireBasic();
+                    break;
+            }
             fireCoolDown = 5f / fireRate;
         }
     }
