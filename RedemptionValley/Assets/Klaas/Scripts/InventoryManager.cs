@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static event HandleMoneyCollection OnMoneyAdd;
-    public delegate void HandleMoneyCollection(int moneyAmount);
+    //public static event HandleMoneyCollection OnMoneyAdd;
+    //public delegate void HandleMoneyCollection(int moneyAmount);
 
 
     private void OnEnable()

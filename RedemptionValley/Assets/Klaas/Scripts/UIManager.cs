@@ -8,6 +8,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+
+
     [Header("Player Ammo")]
     public TextMeshProUGUI ammoText;
 
@@ -15,15 +17,32 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private WeaponClass currentWeapon;
 
+    private void OnEnable()
+    {
+        WeaponStore.OnAmmoAdd += UpdateAmmo;
+    }
+
     private void Start()
     {
-        gameObject.TryGetComponent<WeaponClass>(out currentWeapon);
-        ammoText.text = $"currentWeapon.ammo";
+        currentWeapon = GameObject.FindGameObjectWithTag("WeaponSprite").gameObject.GetComponentInChildren<WeaponClass>();
+        ammoText.text = $"{currentWeapon.ammo}";
     }
 
 
     public void UpdateAmmo()
     {
         ammoText.text = $"{currentWeapon.ammo}";
+    }
+    public void GetWeaponClass()
+    {
+        try
+        {
+            currentWeapon = GameObject.FindGameObjectWithTag("WeaponSprite").gameObject.GetComponentInChildren<WeaponClass>();
+            ammoText.text = $"{currentWeapon.ammo}";
+        }
+        catch
+        {
+            Debug.Log("No Weapon Could Be Found");
+        }
     }
 }

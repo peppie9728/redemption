@@ -21,7 +21,7 @@ public abstract class WeaponClass : MonoBehaviour
     [Header("Ammo")]
     public uint ammo;
     //public int minAmmo;
-    //public int mamAmmo;
+    public uint maxAmmo;
     [Header("Bullet")]
     public GameObject bullet;
     public float bulletforce;
@@ -34,6 +34,7 @@ public abstract class WeaponClass : MonoBehaviour
     public UIManager uiManager;
     [Header("Current Weapon State")]
     public CurrentUpgrade currentUpgrade;
+
     public void FireBasic()
     {
         Debug.Log("Fire");
