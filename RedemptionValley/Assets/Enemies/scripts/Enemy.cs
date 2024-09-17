@@ -20,6 +20,10 @@ public abstract class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         FindTarget();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public abstract void Attack();

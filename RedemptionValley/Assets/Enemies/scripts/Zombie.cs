@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Zombie : Enemy
 {
-    
-    
-    
-    
+ 
     public override void Attack()
     {
         target.GetComponent<PlayerController>().AddHealth(-damage);
@@ -26,9 +24,8 @@ public class Zombie : Enemy
     private void Update()
     {
         Move();
+      
     }
-
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -37,4 +34,5 @@ public class Zombie : Enemy
             Attack();
         }
     }
+    
 }

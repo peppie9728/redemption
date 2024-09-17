@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public abstract class Bullet : MonoBehaviour
 {
-    public float bulletLife = 1.5f;
+    [Header("Targeting")]
+    public float bulletLife = 1f;
     public Transform target;
-    
+
+    [Header("Damage")]
+    public int damage;
     //public float speed = 8f;
     //public float rotateSpeed = 99999f;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,13 +23,16 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bulletLife -= Time.deltaTime /2;
-        if(bulletLife <= 0)
+        
+
+    }
+    public void LifeTime()
+    {
+        bulletLife -= Time.deltaTime / 2;
+        if (bulletLife <= 0)
         {
             Destroy(gameObject);
         }
-       // transform.LookAt(target);
-
     }
     private void FixedUpdate()
     {
@@ -40,17 +46,18 @@ public class Bullet : MonoBehaviour
 
         //rb.velocity = transform.up * speed;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.layer == 6)
         {
-            Destroy(collision.gameObject);
-           // Destroy(gameObject);
+            collision.gameObject.GetComponent<Enemy>().health -= damage;
+   
+     
         }
         Destroy(this.gameObject);
         /*
          *Add Code To Damage Enemy
-         */
-    }
+         
+    }*/
 }

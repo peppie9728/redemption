@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class HandGun : WeaponClass
 {
- 
+    [Header("Weapon Updrages")]
+    public GameObject bulletUpdrageOne;
+    public GameObject bulletUpgradeTwo;
     void Start()
     {
         GameObject.FindGameObjectWithTag("Player").TryGetComponent<UIManager>(out uiManager);
@@ -30,9 +32,11 @@ public class HandGun : WeaponClass
                     break;
 
                 case CurrentUpgrade.UpdrageOne:
+                    FireBasic();
                     break;
 
                 case CurrentUpgrade.UpgradeTwo:
+                    FireBasic();
                     break;
 
                 default:
@@ -41,20 +45,32 @@ public class HandGun : WeaponClass
             }
             fireCoolDown = 5f / fireRate;
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            UpgradeTwo();
+        }
+
     }
 
-    public void UpgradeOne()
+    public override void UpgradeOne()
     {
         currentUpgrade = CurrentUpgrade.UpdrageOne;
+        damage += 35;
+        fireRate = 4;
+        bullet = bulletUpdrageOne;
         /*
          * big damage gun, deze upgrade path heeft een lagere fire rate maar een significant hogere damage.
          */
     }
-    public void UpgradeTwo()
+    public override void UpgradeTwo()
     {
-        currentUpgrade = CurrentUpgrade.UpgradeTwo; 
+        currentUpgrade = CurrentUpgrade.UpgradeTwo;
+        damage += 8;
+        fireRate = 8;
+        bulletforce = 15f;
+        bullet = bulletUpgradeTwo;
         /*
-         * high firerate gun, deze upgrade path heeft een stuk hogere attack speed en minder damage
+         * high firerate gun, deze upgrade path heeft een stuk hogere attack speed en minder damage But the bullets bounce of the walls
          */
     }
 }

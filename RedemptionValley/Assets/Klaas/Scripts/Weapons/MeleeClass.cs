@@ -49,4 +49,17 @@ public class MeleeClass : MonoBehaviour
         hitCollider.SetActive(false);
         attackSpeed = 0.5f;
     }
+
+    public void MeleeUpgradeOne()
+    {
+        /*
+         * katana, de eerste upgrade voor de katana is een dubbele aanval waar hij 2 keer slaat en de 2e upgrade schiet er een wervelwind uit het zwaard.
+         */
+    }
+    public void MeleeUpgradeTwo()
+    {
+        /*
+         * axe, de eerste upgrade heeft een knockback en de 2e upgrade slaat de player in een cirkel om zich heen.
+         */
+    }
 }

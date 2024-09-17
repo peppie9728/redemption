@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Health Bar")]
     public Slider playerHealthBar;
+
+    [Header("Economy")]
+    public int playerMoney;
+    public int playerSkillPoints;
     //this is the player controllerr everything that the player can do happens here.
 
     [Header("player variables")]

@@ -11,6 +11,9 @@ public class WeaponStore : MonoBehaviour
     public static event HandleUIAmmoChange OnAmmoAdd;
     public delegate void HandleUIAmmoChange();
 
+    public static event HandleUIHealthChange OnMoneyChange;
+    public delegate void HandleUIHealthChange();
+
     [Header("Players Controller")]
     [SerializeField] private PlayerController playerController;
 
@@ -54,16 +57,32 @@ public class WeaponStore : MonoBehaviour
 
     public void BuyAmmo()
     {
-        currentWeaponClass.ammo += 32;
-        OnAmmoAdd?.Invoke();
+        if (playerController.playerMoney >= 15)
+        {
+            currentWeaponClass.ammo += 32;
+            playerController.playerMoney -= 15;
+            OnAmmoAdd?.Invoke();
+            OnMoneyChange?.Invoke();
+        }
+        else
+        {
+
+        }
         //Add Ammo Price
     }
 
     public void Heal()
     {
-        playerController.AddHealth(10);
-        //Add Price For Healing
-        //Add Info Box on select Saying what it will do
+        if (playerController.playerMoney >= 10 && playerController.playerHealthBar.value < playerController.playerHealthBar.maxValue)
+        {
+            playerController.AddHealth(10);
+            playerController.playerMoney -= 10;
+            OnMoneyChange?.Invoke();
+        } 
+        else
+        {
+            Debug.Log("Not Enough Money");
+        }
     }
 
 }

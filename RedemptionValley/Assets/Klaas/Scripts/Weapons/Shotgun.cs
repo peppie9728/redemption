@@ -38,4 +38,17 @@ public class Shotgun : WeaponClass
             fireCoolDown = 5f / fireRate;
         }
     }
+    public override void UpgradeOne()
+    {
+        /*
+         * automatic shotgun, deze upgrade zorgt dat de shotgun volledig automatisch word maar levert daar wel een beetje damage voor in.
+         */
+    }
+    public override void UpgradeTwo()
+    {
+        /*
+         * dragon breath, met deze upgrade schiet je shotgun vuur ammo die een knock back geeft en een damage over time effect aan de enemy’s geeft.
+         */
+    }
+
 }

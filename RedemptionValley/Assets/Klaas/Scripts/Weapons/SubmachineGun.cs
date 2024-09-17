@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class SubmachineGun : WeaponClass
 {
@@ -39,5 +40,18 @@ public class SubmachineGun : WeaponClass
             }
             fireCoolDown = 5f / fireRate;
         }
+    }
+
+    public override void UpgradeOne()
+    {
+      /* 
+       * burst gun, de gun schiet 3 kogels snel achter elkaar en deze doen meer damage dan normal.
+       */
+    }
+    public override void UpgradeTwo()
+    {
+        /*
+         * spray & pray, de gun heeft een enorm hoge attack speed maar doet veel minder damage per bullet.
+         */
     }
 }

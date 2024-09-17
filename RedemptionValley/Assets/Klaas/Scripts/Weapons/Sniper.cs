@@ -36,4 +36,16 @@ public class Sniper : WeaponClass
             fireCoolDown = 5f / fireRate;
         }
     }
+    public override void UpgradeOne()
+    {
+        /*
+         * explosive ammo, deze upgrade zorgt ervoor dat de sniper explosieve ammo schiet die aoe damage doet.
+         */
+    }
+    public override void UpgradeTwo()
+    {
+        /*
+         * armor piercing ammo, deze upgrade zorgt ervoor dat de sniper door meerdere enemy’s tegelijk kan schieten.
+         */
+    }
 }

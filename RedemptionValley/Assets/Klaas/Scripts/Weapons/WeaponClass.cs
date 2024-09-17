@@ -22,18 +22,26 @@ public abstract class WeaponClass : MonoBehaviour
     public uint ammo;
     //public int minAmmo;
     public uint maxAmmo;
+
     [Header("Bullet")]
     public GameObject bullet;
     public float bulletforce;
     public Transform firePoint;
+    public GameObject fireSprite;
+
     [Header("Target")]
     [SerializeField]private Transform dontAsk;
     public Transform fireTarget;
     public Collider2D[] hitColliders;
     public LayerMask layerMask;
     public UIManager uiManager;
+
     [Header("Current Weapon State")]
     public CurrentUpgrade currentUpgrade;
+    public Bullet test1;
+
+    public abstract void UpgradeOne();
+    public abstract void UpgradeTwo();
 
     public void FireBasic()
     {
@@ -42,12 +50,22 @@ public abstract class WeaponClass : MonoBehaviour
         {
             ammo -= 1;
             GameObject firedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+            test1 = firedBullet.GetComponent<Bullet>();
+            test1.damage = damage;
             Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
 
             Vector2 direction = (fireTarget.position - firePoint.position).normalized;
             rb.AddForce(direction * bulletforce, ForceMode2D.Impulse);
+
             uiManager.UpdateAmmo();
+            StartCoroutine(fireExplosion());
         }
+    }
+    IEnumerator fireExplosion()
+    {
+        fireSprite.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        fireSprite.SetActive(false);
     }
     public void CheckTargets()
     {

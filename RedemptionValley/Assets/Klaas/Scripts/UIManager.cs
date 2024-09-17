@@ -9,6 +9,11 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
 
+ 
+
+    [Header("Player Money & Skill Points")]
+    public TextMeshProUGUI moneyText;
+    public TextMeshProUGUI skillText;
 
     [Header("Player Ammo")]
     public TextMeshProUGUI ammoText;
@@ -20,19 +25,41 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         WeaponStore.OnAmmoAdd += UpdateAmmo;
+        WeaponStore.OnMoneyChange += UpdateMoney;
     }
 
     private void Start()
     {
-        currentWeapon = GameObject.FindGameObjectWithTag("WeaponSprite").gameObject.GetComponentInChildren<WeaponClass>();
-        ammoText.text = $"{currentWeapon.ammo}";
+        GetWeaponClass();
+        GetPlayerController();
+        // currentWeapon = GameObject.FindGameObjectWithTag("WeaponSprite").gameObject.GetComponentInChildren<WeaponClass>();
+        //  ammoText.text = $"{currentWeapon.ammo}";
+
+        UpdateMoney();
     }
 
+    public void UpdateMoney()
+    {
+        moneyText.text = $"{playerController.playerMoney}";
+    }
 
     public void UpdateAmmo()
     {
         ammoText.text = $"{currentWeapon.ammo}";
     }
+
+    public void GetPlayerController()
+    {
+        try
+        {
+            playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        }
+        catch
+        {
+            Debug.Log("Could't Find A Player Something Is Really Wrong");
+        }
+    }
+
     public void GetWeaponClass()
     {
         try
@@ -42,6 +69,7 @@ public class UIManager : MonoBehaviour
         }
         catch
         {
+            ammoText.text = "0";
             Debug.Log("No Weapon Could Be Found");
         }
     }
