@@ -5,13 +5,16 @@ using static UnityEngine.ParticleSystem;
 
 public class SubmachineGun : WeaponClass
 {
+    [Header("Burst Options")]
+    public uint burstAmount = 3;
+    public int bulletDelayMS = 90;
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.TryGetComponent<UIManager>(out uiManager);
+        GameObject.FindGameObjectWithTag("Player").gameObject.TryGetComponent<UIManager>(out uiManager);
         damage = 2;
         fireRate = 10;
-        ammo = 100;
+        ammo = 10;
         ChangeWeaponSprite();
     }
 
@@ -20,7 +23,7 @@ public class SubmachineGun : WeaponClass
     {
         CheckTargets();
         fireCoolDown -= Time.deltaTime;
-        if (Input.GetButton("Fire1") && fireCoolDown <= 0 && ammo > 0) // Change The Input To The Arcade Input
+        if (Input.GetButtonDown("Fire1") && fireCoolDown <= 0 && ammo > 0) // Change The Input To The Arcade Input
         {
             switch (currentUpgrade)
             {
@@ -29,6 +32,7 @@ public class SubmachineGun : WeaponClass
                     break;
 
                 case CurrentUpgrade.UpdrageOne:
+                    BurstFire(burstAmount,bulletDelayMS);
                     break;
 
                 case CurrentUpgrade.UpgradeTwo:
@@ -44,8 +48,11 @@ public class SubmachineGun : WeaponClass
 
     public override void UpgradeOne()
     {
+        damage += 3;
+        fireRate = 25;
+        // Add A change to the sprite
       /* 
-       * burst gun, de gun schiet 3 kogels snel achter elkaar en deze doen meer damage dan normal.
+       * burst gun, de gun schiet 3 kogels snel achter elkaar en deze doen meer damage dan normal. burst ammount kan worden geupgrade
        */
     }
     public override void UpgradeTwo()

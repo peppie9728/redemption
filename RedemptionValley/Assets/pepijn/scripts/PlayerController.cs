@@ -42,10 +42,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Movement Animation")]
     public Animator playerAnimator;
+
+    [Header("Player Attack")]
+    public MeleeClass meleeClass;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-       
+        meleeClass = gameObject.GetComponent<MeleeClass>();
     }
     private void Update()
     {
@@ -77,8 +80,13 @@ public class PlayerController : MonoBehaviour
             stamina += staminaLoss * Time.deltaTime;
         }
 
+
+
         playerAnimator.SetFloat("x", inputHorizontal);
         playerAnimator.SetFloat("y", inputVertical);
+
+        playerAnimator.SetFloat("attackCountdown", meleeClass.attackDelay);
+        
     }
 
     public void HandleMovement()
@@ -93,7 +101,6 @@ public class PlayerController : MonoBehaviour
         {
             isSprinting = false;
         }
-
     }
 
     public float GetHealth()

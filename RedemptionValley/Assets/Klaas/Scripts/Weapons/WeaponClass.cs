@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 public enum CurrentUpgrade
@@ -19,7 +20,7 @@ public abstract class WeaponClass : MonoBehaviour
     public float fireRate = 5;
     public float fireCoolDown = 1f;
     [Header("Ammo")]
-    public uint ammo;
+    [Range(0,9999)]public uint ammo;
     //public int minAmmo;
     public uint maxAmmo;
 
@@ -91,6 +92,32 @@ public abstract class WeaponClass : MonoBehaviour
         else { fireTarget = dontAsk; OnClosestEnemy?.Invoke(null); }
       
     }
+    public async void BurstFire(uint burstAmount, int bulletDelayMS)
+    {
+        if(fireTarget != null )
+        {
+            
+            for (int i = 0; i < burstAmount; i++) 
+            {
+                if (ammo > 0)
+                {
+                    ammo -= 1;
+                    GameObject firedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+                    Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
+
+                    Vector2 direction = (fireTarget.position - firePoint.position).normalized;
+                    rb.AddForce(direction * bulletforce, ForceMode2D.Impulse);
+                    firedBullet.GetComponent<Bullet>().damage = damage;
+
+                    StartCoroutine(fireExplosion());
+                    uiManager.UpdateAmmo();
+                    await Task.Delay(bulletDelayMS);
+                }
+                else { break; }
+            }
+        }
+    }
+
     public void FireSpread()
     {
         if (fireTarget != null)
@@ -103,9 +130,11 @@ public abstract class WeaponClass : MonoBehaviour
                 GameObject firedBullet = Instantiate(bullet, firePoint.position + spreadOffset, firePoint.rotation);
                 Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
 
+
                 Vector2 direction = (fireTarget.position - firePoint.position).normalized;
                 rb.AddForce(direction * bulletforce, ForceMode2D.Impulse);
                 spreadOffset.y += 0.2f;
+                StartCoroutine(fireExplosion());
             }
              uiManager.UpdateAmmo();
         }

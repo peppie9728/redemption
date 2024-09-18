@@ -24,8 +24,7 @@ public class MeleeClass : MonoBehaviour
         if(attackDelay <0)
         {
             StartCoroutine(AttackDelay());
-            attackDelay = 3;
-
+            //attackDelay = 3;
         } 
     }
     public void MeleeAttack()
@@ -48,6 +47,7 @@ public class MeleeClass : MonoBehaviour
         yield return new WaitForSeconds(attackSpeed);
         hitCollider.SetActive(false);
         attackSpeed = 0.5f;
+        attackDelay = 3f;
     }
 
     public void MeleeUpgradeOne()
