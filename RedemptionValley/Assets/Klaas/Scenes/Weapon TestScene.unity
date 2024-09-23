@@ -4771,6 +4771,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shotgun
       objectReference: {fileID: 0}
+    - target: {fileID: 641419270949342927, guid: b9a6a91c73f77e44a8a7ac0fd99a9bdf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1648461291061439392, guid: b9a6a91c73f77e44a8a7ac0fd99a9bdf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11361,6 +11365,7 @@ MonoBehaviour:
   hitCollider: {fileID: 623134174}
   attackSpeed: 0.3
   meleeDamage: 10
+  currentMeleeUpgrade: 0
   attackDelay: 3
 --- !u!95 &1252034362
 Animator:
