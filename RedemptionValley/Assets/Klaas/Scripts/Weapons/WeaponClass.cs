@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,10 +16,12 @@ public abstract class WeaponClass : MonoBehaviour
     [Header("UI Info")]
     public string weaponName;
     public Sprite weaponSprite;
+
     [Header("Weapon")]
     public int damage;
     public float fireRate = 5;
     public float fireCoolDown = 1f;
+    public float timer;
     [Header("Ammo")]
     [Range(0,9999)]public uint ammo;
     //public int minAmmo;
@@ -29,7 +32,7 @@ public abstract class WeaponClass : MonoBehaviour
     public float bulletforce;
     public Transform firePoint;
     public GameObject fireSprite;
-
+    public float bulletLifeTime;
     [Header("Target")]
     [SerializeField]private Transform dontAsk;
     public Transform fireTarget;
@@ -40,6 +43,10 @@ public abstract class WeaponClass : MonoBehaviour
     [Header("Current Weapon State")]
     public CurrentUpgrade currentUpgrade;
     public Bullet test1;
+
+    [Header("Weapon Upgrade")]
+    public string upgradeOneInfo;
+    public string upgradeTwoInfo;
 
     public abstract void UpgradeOne();
     public abstract void UpgradeTwo();
@@ -53,6 +60,7 @@ public abstract class WeaponClass : MonoBehaviour
             GameObject firedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
             test1 = firedBullet.GetComponent<Bullet>();
             test1.damage = damage;
+            firedBullet.GetComponent<Bullet>().bulletLife = bulletLifeTime;
             Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
 
             Vector2 direction = (fireTarget.position - firePoint.position).normalized;
@@ -108,7 +116,7 @@ public abstract class WeaponClass : MonoBehaviour
                     Vector2 direction = (fireTarget.position - firePoint.position).normalized;
                     rb.AddForce(direction * bulletforce, ForceMode2D.Impulse);
                     firedBullet.GetComponent<Bullet>().damage = damage;
-
+                    firedBullet.GetComponent<Bullet>().bulletLife = bulletLifeTime;
                     StartCoroutine(fireExplosion());
                     uiManager.UpdateAmmo();
                     await Task.Delay(bulletDelayMS);
@@ -117,8 +125,7 @@ public abstract class WeaponClass : MonoBehaviour
             }
         }
     }
-
-    public void FireSpread()
+    public void FireSpread() // On fire it shoots 3 bullets that spread away from each other
     {
         if (fireTarget != null)
         {
@@ -129,8 +136,8 @@ public abstract class WeaponClass : MonoBehaviour
 
                 GameObject firedBullet = Instantiate(bullet, firePoint.position + spreadOffset, firePoint.rotation);
                 Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
-
-
+                firedBullet.GetComponent<Bullet>().damage = damage;
+                firedBullet.GetComponent<Bullet>().bulletLife = bulletLifeTime;
                 Vector2 direction = (fireTarget.position - firePoint.position).normalized;
                 rb.AddForce(direction * bulletforce, ForceMode2D.Impulse);
                 spreadOffset.y += 0.2f;

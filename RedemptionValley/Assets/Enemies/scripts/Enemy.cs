@@ -44,6 +44,19 @@ public abstract class Enemy : MonoBehaviour
         health += input;
     }
 
+    IEnumerator TakeTimeDamage(int damage, int damageTicks)
+    {
+        for (int i = 0; i < damageTicks; i++)
+        {
+            health -= damage;
+            yield return new WaitForSeconds(2);
+        }
+    }
+    public void TimeDamage(int damage, int damageTicks)
+    {
+        StartCoroutine(TakeTimeDamage(damage, damageTicks));
+    }
+
     public void Destroy()
     {
         GameObject.Destroy(this);

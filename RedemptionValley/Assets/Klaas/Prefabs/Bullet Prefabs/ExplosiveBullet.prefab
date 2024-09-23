@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 485193607511145815}
   - component: {fileID: 8202902088801905833}
-  - component: {fileID: 1004005599270754753}
   - component: {fileID: 973488555772705582}
   - component: {fileID: 1150118458334134651}
+  - component: {fileID: 7847662657349652375}
   m_Layer: 8
-  m_Name: Bullet
+  m_Name: ExplosiveBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 43a1659ebdc44784483bdc9d680f22d4, type: 3}
-  m_Color: {r: 0.9801799, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.14244922, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,22 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1004005599270754753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5974495147777525974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd001f80bc73ce4a99b1aa15b28588c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletLife: 2
-  target: {fileID: 0}
-  damage: 0
-  rb: {fileID: 0}
 --- !u!50 &973488555772705582
 Rigidbody2D:
   serializedVersion: 4
@@ -145,7 +129,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -165,3 +149,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &7847662657349652375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5974495147777525974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dafbb3c4115c1624682b19f435c75185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletLife: 1.28
+  target: {fileID: 0}
+  damage: 2
+  rb: {fileID: 0}
+  explosionObject: {fileID: 7166907740167267714, guid: bfbe979a8e3ed6e4289397183c95e71d, type: 3}

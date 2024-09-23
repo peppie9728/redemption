@@ -45,10 +45,6 @@ public class HandGun : WeaponClass
             }
             fireCoolDown = 5f / fireRate;
         }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            UpgradeTwo();
-        }
 
     }
 

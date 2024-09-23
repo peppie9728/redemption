@@ -1,13 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Sniper : WeaponClass
 {
+    [Header("Upgrade One")]
+    public GameObject explosiveBullet;
+    [Header("Upgrade Two")]
+    public GameObject armorPiercing;
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject.FindGameObjectWithTag("Player").TryGetComponent<UIManager>(out uiManager);
     }
 
     // Update is called once per frame
@@ -24,9 +29,11 @@ public class Sniper : WeaponClass
                     break;
 
                 case CurrentUpgrade.UpdrageOne:
+                    FireBasic();
                     break;
 
                 case CurrentUpgrade.UpgradeTwo:
+                    FireBasic();
                     break;
 
                 default:
@@ -35,15 +42,27 @@ public class Sniper : WeaponClass
             }
             fireCoolDown = 5f / fireRate;
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            UpgradeOne();
+        }
     }
     public override void UpgradeOne()
     {
+        currentUpgrade = CurrentUpgrade.UpdrageOne;
+        bullet = explosiveBullet;
+        damage = 10;
         /*
          * explosive ammo, deze upgrade zorgt ervoor dat de sniper explosieve ammo schiet die aoe damage doet.
          */
     }
     public override void UpgradeTwo()
     {
+        currentUpgrade = CurrentUpgrade.UpgradeTwo;
+        bullet = armorPiercing;
+        fireCoolDown = 8;
+        fireRate = 1;
+        damage = 30;
         /*
          * armor piercing ammo, deze upgrade zorgt ervoor dat de sniper door meerdere enemy’s tegelijk kan schieten.
          */

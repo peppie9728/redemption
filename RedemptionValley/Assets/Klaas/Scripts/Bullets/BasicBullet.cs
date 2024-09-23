@@ -11,11 +11,7 @@ public class BasicBullet : Bullet
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 6)
-        {
-            collision.gameObject.GetComponent<Enemy>().health -= damage;
-            Destroy(this.gameObject);
-        }
+        DamageEnemy(collision);
 
     }
 }

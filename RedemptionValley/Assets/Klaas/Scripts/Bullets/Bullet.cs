@@ -31,8 +31,25 @@ public abstract class Bullet : MonoBehaviour
         bulletLife -= Time.deltaTime / 2;
         if (bulletLife <= 0)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
+    }
+    public void DamageEnemy(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            collision.gameObject.GetComponent<Enemy>().health -= damage;
+            Destroy(this.gameObject);
+        }
+    }
+    public void DamageEnemy(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            collision.gameObject.GetComponent<Enemy>().health -= damage;
+            Destroy(this.gameObject);
+        }
+
     }
     private void FixedUpdate()
     {
