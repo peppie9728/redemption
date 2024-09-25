@@ -12,7 +12,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected Rigidbody2D rb;
 
-    private void Awake()
+     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
