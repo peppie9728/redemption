@@ -51,7 +51,7 @@ public abstract class WeaponClass : MonoBehaviour
     public abstract void UpgradeOne();
     public abstract void UpgradeTwo();
 
-    public void FireBasic()
+    public void FireBasic(GameObject bullet)
     {
         Debug.Log("Fire");
         if (fireTarget != null)

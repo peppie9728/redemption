@@ -25,19 +25,19 @@ public class Sniper : WeaponClass
             switch (currentUpgrade)
             {
                 case CurrentUpgrade.Basic:
-                    FireBasic();
+                    FireBasic(bullet);
                     break;
 
                 case CurrentUpgrade.UpdrageOne:
-                    FireBasic();
+                    FireBasic(bullet);
                     break;
 
                 case CurrentUpgrade.UpgradeTwo:
-                    FireBasic();
+                    FireBasic(bullet);
                     break;
 
                 default:
-                    FireBasic();
+                    FireBasic(bullet);
                     break;
             }
             fireCoolDown = 5f / fireRate;

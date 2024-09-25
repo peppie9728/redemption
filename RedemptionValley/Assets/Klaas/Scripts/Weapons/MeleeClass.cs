@@ -1,27 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 
 public class MeleeClass : MonoBehaviour
 {
+    [Header("Animator")]
+    public Animator meleeAnimations;
+
     [Header("Basic Melee")]
     public GameObject hitCollider;
     public float attackSpeed;
-    public int meleeDamage;
+    public float meleeDamage;
+    public EdgeCollider2D collider;
 
     [Header("Upgrade State")]
     public CurrentUpgrade currentMeleeUpgrade;
 
     [Header("Upgrade One")]
-
+    public int loopAmount;
+    public int currentLoopAmount;
     [Header("Upgrade Two")]
 
 
     [Header("Melee Time")]
     public float attackDelay = 3f;
+    public int millisecondDelay;
     // Start is called before the first frame update
     void Start()
     {
+      meleeAnimations = GetComponent<Animator>();   
         
     }
 
@@ -34,55 +43,88 @@ public class MeleeClass : MonoBehaviour
             case CurrentUpgrade.Basic:
                  MeleeAttack();
                 break;
+
             case CurrentUpgrade.UpdrageOne:
                 MeleeUpgradeOne();
                 break;
+
             case CurrentUpgrade.UpgradeTwo:
                 MeleeUpgradeTwo();
-                    break;
-                default: MeleeAttack();
                 break;
+
+           // default: MeleeAttack();
+                //break;
+        }
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            MeleeUpgradeOne();
         }
     }
-    public void MeleeAttack()
+    public async void MeleeAttack()
     {
         attackDelay -= Time.deltaTime;
         if (attackDelay < 0)
         {
-            StartCoroutine(AttackDelay());
+            await Task.Delay(millisecondDelay);
+            //  StartCoroutine(AttackDelay());
             //attackDelay = 3;
+            attackDelay = 3f;
         }
     }
-
+    public void SetMeleeOn()
+    {
+        hitCollider.SetActive(true);
+    }
+    public void SetMeleeOff()
+    {
+        hitCollider.SetActive(false);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 6)
         {
-            Destroy(collision.gameObject);
-            //gameObject.GetComponent<Enemy>().health -= meleeDamage;
+           // Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Enemy>().health -= meleeDamage;
         }
     }
+    public void UpgradeAttackAmount()
+    {
+        
+    }
 
+    public void UpgradeMeleeDamage()
+    {
+        meleeDamage *= 1.5f;
+    }
+    //public void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if(collision.gameObject.layer == 6)
+    //    {
+    //        collision.gameObject.GetComponent<Enemy>().health -= meleeDamage;
+    //    }
+    //}
     IEnumerator AttackDelay()
     {
+      // meleeAnimations.
+
         hitCollider.SetActive(true);
         yield return new WaitForSeconds(attackSpeed);
         hitCollider.SetActive(false);
         attackSpeed = 0.5f;
-        attackDelay = 3f;
+       
     }
 
     public void MeleeUpgradeOne()
     {
-            attackDelay -= Time.deltaTime;
-        for (int i = 0; i < 2; i++)
+        collider.isTrigger = false;
+        attackDelay -= Time.deltaTime;
+        if (attackDelay < 0)
         {
-            if (attackDelay < 0)
-            {
-                StartCoroutine(AttackDelay());
-                //attackDelay = 3;
-            }
+            attackDelay = 3;
+
         }
+        
         /*
          * katana, de eerste upgrade voor de katana is een dubbele aanval waar hij 2 keer slaat en de 2e upgrade schiet er een wervelwind uit het zwaard.
          */

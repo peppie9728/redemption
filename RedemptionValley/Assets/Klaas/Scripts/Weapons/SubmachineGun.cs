@@ -28,7 +28,7 @@ public class SubmachineGun : WeaponClass
             switch (currentUpgrade)
             {
                 case CurrentUpgrade.Basic:
-                    FireBasic();
+                    FireBasic(bullet);
                     break;
 
                 case CurrentUpgrade.UpdrageOne:
@@ -39,7 +39,7 @@ public class SubmachineGun : WeaponClass
                     break;
 
                 default:
-                    FireBasic();
+                    FireBasic(bullet);
                     break;
             }
             fireCoolDown = 5f / fireRate;

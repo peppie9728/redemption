@@ -27,7 +27,7 @@ public class Shotgun : WeaponClass
                 case CurrentUpgrade.Basic:
                     if (Input.GetButtonDown("Fire1"))
                     {
-                        FireBasic();
+                        FireBasic(bullet);
                         timer = fireCoolDown / fireRate;
                     }
                     break;
@@ -49,7 +49,7 @@ public class Shotgun : WeaponClass
                     break;
 
                 default:
-                    FireBasic();
+                    FireBasic(bullet);
                     break;
             }
            
