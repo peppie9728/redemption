@@ -13,7 +13,7 @@ public class MeleeClass : MonoBehaviour
     public GameObject hitCollider;
     public float attackSpeed;
     public float meleeDamage;
-    public EdgeCollider2D collider;
+    public EdgeCollider2D upgCollider;
 
     [Header("Upgrade State")]
     public CurrentUpgrade currentMeleeUpgrade;
@@ -117,7 +117,7 @@ public class MeleeClass : MonoBehaviour
 
     public void MeleeUpgradeOne()
     {
-        collider.isTrigger = false;
+        upgCollider.isTrigger = false;
         attackDelay -= Time.deltaTime;
         if (attackDelay < 0)
         {

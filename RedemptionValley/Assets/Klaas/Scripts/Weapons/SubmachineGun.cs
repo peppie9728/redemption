@@ -11,6 +11,8 @@ public class SubmachineGun : WeaponClass
     // Start is called before the first frame update
     void Start()
     {
+        upNameOne = "Burst";
+        upNameTwo = "Spray And Pray";
         GameObject.FindGameObjectWithTag("Player").gameObject.TryGetComponent<UIManager>(out uiManager);
         damage = 2;
         fireRate = 10;

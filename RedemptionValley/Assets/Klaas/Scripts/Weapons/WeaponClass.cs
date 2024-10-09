@@ -47,6 +47,8 @@ public abstract class WeaponClass : MonoBehaviour
     [Header("Weapon Upgrade")]
     public string upgradeOneInfo;
     public string upgradeTwoInfo;
+    public string upNameOne;
+    public string upNameTwo;
 
     public abstract void UpgradeOne();
     public abstract void UpgradeTwo();

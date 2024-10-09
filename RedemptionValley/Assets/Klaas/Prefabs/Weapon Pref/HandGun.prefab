@@ -105,12 +105,14 @@ MonoBehaviour:
   damage: 20
   fireRate: 5
   fireCoolDown: 1
+  timer: 0
   ammo: 32
   maxAmmo: 0
   bullet: {fileID: 5974495147777525974, guid: 0bee88d118a0cc6428f59254b135f284, type: 3}
   bulletforce: 20
   firePoint: {fileID: 5663303289156667958}
-  fireSprite: {fileID: 0}
+  fireSprite: {fileID: 1263680820560282139}
+  bulletLifeTime: 0
   dontAsk: {fileID: 1042791980086602628}
   fireTarget: {fileID: 0}
   hitColliders: []
@@ -120,6 +122,10 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   currentUpgrade: 0
   test1: {fileID: 0}
+  upgradeOneInfo: 
+  upgradeTwoInfo: 
+  upNameOne: 
+  upNameTwo: 
   bulletUpdrageOne: {fileID: 0}
   bulletUpgradeTwo: {fileID: 5974495147777525974, guid: a2574fe580477c44fa234a625906a9c4, type: 3}
 --- !u!114 &7456787044745841671

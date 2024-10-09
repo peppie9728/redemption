@@ -10,6 +10,8 @@ public class HandGun : WeaponClass
     public GameObject bulletUpgradeTwo;
     void Start()
     {
+        upNameOne = "'Big";
+        upNameTwo = "Fast";
         GameObject.FindGameObjectWithTag("Player").TryGetComponent<UIManager>(out uiManager);
       //  gameObject.TryGetComponent<UIManager>(out uiManager);
         damage = 5;

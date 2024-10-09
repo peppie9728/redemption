@@ -9,13 +9,15 @@ public class AssaultRifle : WeaponClass
     public float grenadeCountDownT;
     public GameObject grenadeBullet;
 
-    [Header("")]
+    [Header("Upgrade Two")]
     public ParticleSystem flameThrower;
     public float flameTimer;
     public float flameCountDownT;
     // Start is called before the first frame update
     void Start()
     {
+        upNameOne = "Grenader";
+        upNameTwo = "Flamer";
         GameObject.FindGameObjectWithTag("Player").gameObject.TryGetComponent<UIManager>(out uiManager);
     }
 
@@ -43,6 +45,7 @@ public class AssaultRifle : WeaponClass
                     break;
 
                 case CurrentUpgrade.UpgradeTwo:
+                    FireBasic(bullet);
                     break;
 
                 default:
@@ -50,14 +53,16 @@ public class AssaultRifle : WeaponClass
             }
         }
     }
+
     public override void UpgradeOne()
     {
-
+        currentUpgrade = CurrentUpgrade.UpdrageOne;
+        //Debug.Log("Reached One...");
         /*
          * grenade launcher attachment, deze schiet om een bepaald aantal seconden een granaat in de richting van de aim van de character.
          */
 
-        throw new System.NotImplementedException();
+       // throw new System.NotImplementedException();
     }
 
     public void GrenadeShooter()
@@ -74,11 +79,13 @@ public class AssaultRifle : WeaponClass
 
     public override void UpgradeTwo()
     {
+        currentUpgrade = CurrentUpgrade.UpgradeTwo;
+        //Debug.Log("Reached Two...");
         /*
          * flamethrower attachment, deze schiet om een bepaald aantal seconden een golf van vuur die de enemy’s over time damage doet.
          */
 
-        throw new System.NotImplementedException();
+       // throw new System.NotImplementedException();
     }
 
     public void Flamethrower()

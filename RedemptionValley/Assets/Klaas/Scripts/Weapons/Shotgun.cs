@@ -12,7 +12,9 @@ public class Shotgun : WeaponClass
     // Start is called before the first frame update
     void Start()
     {
-      GameObject.FindGameObjectWithTag("Player").gameObject.TryGetComponent<UIManager>(out uiManager);
+        upNameOne = "Auto";
+        upNameTwo = "Dragons Breath";
+        GameObject.FindGameObjectWithTag("Player").gameObject.TryGetComponent<UIManager>(out uiManager);
     }
 
     // Update is called once per frame
@@ -78,7 +80,8 @@ public class Shotgun : WeaponClass
         fireCoolDown = 3;
         fireRate = 2;
         damage = 5;
-        bulletLifeTime = 1f;
+        bulletLifeTime = 1f; 
+        // Note: Add A Small Flame When Gun Is Being Shot  
         /*
          * dragon breath, met deze upgrade schiet je shotgun vuur ammo die een knock back geeft en een damage over time effect aan de enemy’s geeft.
          */

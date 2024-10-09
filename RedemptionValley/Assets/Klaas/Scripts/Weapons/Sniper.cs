@@ -12,6 +12,8 @@ public class Sniper : WeaponClass
     // Start is called before the first frame update
     void Start()
     {
+        upNameOne = "Explosive";
+        upNameTwo = "Armor";
         GameObject.FindGameObjectWithTag("Player").TryGetComponent<UIManager>(out uiManager);
     }
 
