@@ -7,6 +7,9 @@ using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event HandleUIUpdate UpdateUI;
+    public delegate void HandleUIUpdate(ItemType itemType);
+
     [Header("Health Bar")]
     public Slider playerHealthBar;
 
@@ -45,6 +48,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Attack")]
     public MeleeClass meleeClass;
+
+    private void OnEnable()
+    {
+        PickUps.OnPickUp += ItemPickUp;
+    }
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -59,8 +67,6 @@ public class PlayerController : MonoBehaviour
     {
         Move();
        
-     
-        
     }
 
     public void Move()
@@ -120,6 +126,24 @@ public class PlayerController : MonoBehaviour
         playerHealthBar.value = health;
     }
 
-
+    public void ItemPickUp(int amountPickedUp, ItemType itemType)
+    {
+        switch(itemType)
+        {
+            case ItemType.Gold:
+                playerMoney += amountPickedUp;
+                UpdateUI?.Invoke(itemType);
+                break;
+            case ItemType.Ammo:
+                Debug.Log("No Refrence To The Current Weapon Yet!!");
+                break;
+            case ItemType.SkillPoint:
+                playerSkillPoints += amountPickedUp;
+                UpdateUI?.Invoke(itemType);
+                break;
+            default:
+                break;
+        }
+    }
 
 }

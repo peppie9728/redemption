@@ -6,7 +6,8 @@ using UnityEngine;
 public class Zombie : Enemy
 {
     public Animator enemyAnimator;
-
+    public bool isTouchingPlayer = false;
+    public float attackTimer;
     public override void Attack()
     {
         target.GetComponent<PlayerController>().AddHealth(-damage);
@@ -28,15 +29,35 @@ public class Zombie : Enemy
     private void Update()
     {
         Move();
-      
+        enemyAnimator.SetBool("isTouchingPlayer", isTouchingPlayer);
+        attackTimer -= Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.tag == "Player")
         {
+            isTouchingPlayer = true;
             Attack();
+            
         }
     }
-    
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && attackTimer < 0 )
+        {
+            Attack();
+            Debug.Log("Touching Player");
+            attackTimer = 5;
+        }
+       
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            isTouchingPlayer= false;
+        }
+    }
 }

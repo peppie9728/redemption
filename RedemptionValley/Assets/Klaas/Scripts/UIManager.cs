@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 
 public class UIManager : MonoBehaviour
@@ -26,6 +27,7 @@ public class UIManager : MonoBehaviour
     {
         WeaponStore.OnAmmoAdd += UpdateAmmo;
         WeaponStore.OnMoneyChange += UpdateMoney;
+        PlayerController.UpdateUI += UpdateUI;
     }
 
     private void Start()
@@ -45,7 +47,15 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAmmo()
     {
-        ammoText.text = $"{currentWeapon.ammo}";
+        try
+        {
+            ammoText.text = $"{currentWeapon.ammo}";
+        }
+        catch
+        {
+            GetWeaponClass();
+            ammoText.text = $"{currentWeapon.ammo}";
+        }
     }
 
     public void GetPlayerController()
@@ -71,6 +81,25 @@ public class UIManager : MonoBehaviour
         {
             ammoText.text = "0";
             Debug.Log("No Weapon Could Be Found");
+        }
+    }
+
+    public void UpdateUI(ItemType itemType)
+    {
+        switch(itemType)
+        {
+            case ItemType.Ammo:
+                UpdateAmmo();
+                break;
+            case ItemType.Gold:
+                UpdateMoney();
+                break;
+            case ItemType.SkillPoint:
+                Debug.Log("Function Still Needs To Be Added");
+                break;
+            default:
+                break;
+
         }
     }
 }

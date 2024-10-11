@@ -55,7 +55,6 @@ public abstract class WeaponClass : MonoBehaviour
 
     public void FireBasic(GameObject bullet)
     {
-        Debug.Log("Fire");
         if (fireTarget != null)
         {
             ammo -= 1;
