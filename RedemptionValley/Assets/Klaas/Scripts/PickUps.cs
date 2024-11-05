@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using System.Threading;
 
 public enum ItemType {None,Ammo,Gold,SkillPoint}
 public class PickUps : MonoBehaviour
@@ -14,7 +15,7 @@ public class PickUps : MonoBehaviour
     public int itemAmount;
     public ItemType itemType;
     [SerializeField] private LayerMask playerLayers;
-
+    private float countDown = 10;
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
@@ -46,6 +47,7 @@ public class PickUps : MonoBehaviour
             }
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +57,10 @@ public class PickUps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        countDown -= Time.deltaTime;
+        if(countDown <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

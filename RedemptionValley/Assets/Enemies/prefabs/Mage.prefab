@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4343938059292005860}
   - component: {fileID: 487269562714463302}
   - component: {fileID: -2310956488858999854}
+  - component: {fileID: 6849096636793686670}
   m_Layer: 6
   m_Name: Mage
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 627768243326473393}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 744.2795, y: 215.12009, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.6698113, g: 0.16113384, b: 0.6242842, a: 1}
+  m_Sprite: {fileID: 8670525833754539897, guid: d3df8c8b3a27b8b44a8117d2f0e38800, type: 3}
+  m_Color: {r: 1, g: 0.06132078, b: 0.9133528, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,11 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee562550c1de1c4eb1b83885587e4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 20
   moveSpeed: 60
   damage: 0
   target: {fileID: 0}
   rb: {fileID: 0}
+  enemyAnimator: {fileID: 6849096636793686670}
+  item: {fileID: 4884536593985223392, guid: 3e772b986ccb1c7418e82d3ba0932778, type: 3}
   spellPrefab: {fileID: 8523256270346370165, guid: 2c76488cc54364b4581c0565223a9570, type: 3}
   firePoint: {fileID: 3767465800503542957}
   distanceToKeep: 5
@@ -171,3 +174,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &6849096636793686670
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627768243326473393}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd8861e152ef51b4a9a4c401a2f28873, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

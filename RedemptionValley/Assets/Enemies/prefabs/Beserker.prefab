@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 1462429821648733796}
   - component: {fileID: 2409126168693554801}
   - component: {fileID: 8689983000814644968}
-  m_Layer: 0
+  - component: {fileID: 6217363592186359124}
+  m_Layer: 6
   m_Name: Beserker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,11 +77,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
+  m_Sprite: {fileID: -7552264916850868914, guid: d3df8c8b3a27b8b44a8117d2f0e38800, type: 3}
   m_Color: {r: 0.6603774, g: 0, b: 0.09678661, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -99,12 +100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa13ebf232e4a44b9d96511cbf32cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  moveSpeed: 0
-  damage: 0
+  health: 20
+  moveSpeed: 50
+  damage: 10
   target: {fileID: 0}
   rb: {fileID: 0}
-  chargeCdValue: 0
+  enemyAnimator: {fileID: 6217363592186359124}
+  item: {fileID: 4884536593985223392, guid: 3e772b986ccb1c7418e82d3ba0932778, type: 3}
+  chargeCdValue: 4
+  chargeUpTimeValue: 2
+  chargeSpeed: 120
 --- !u!50 &2409126168693554801
 Rigidbody2D:
   serializedVersion: 4
@@ -131,7 +136,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &8689983000814644968
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -167,3 +172,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!95 &6217363592186359124
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2179947064970858064}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd8861e152ef51b4a9a4c401a2f28873, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

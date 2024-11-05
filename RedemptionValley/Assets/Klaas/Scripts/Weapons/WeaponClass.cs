@@ -23,9 +23,9 @@ public abstract class WeaponClass : MonoBehaviour
     public float fireCoolDown = 1f;
     public float timer;
     [Header("Ammo")]
-    [Range(0,9999)]public uint ammo;
+    [Range(0,9999)]public int ammo;
     //public int minAmmo;
-    public uint maxAmmo;
+    public int maxAmmo;
 
     [Header("Bullet")]
     public GameObject bullet;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Zombie : Enemy
 {
-    public Animator enemyAnimator;
+    //public Animator enemyAnimator;
     public bool isTouchingPlayer = false;
     public float attackTimer;
     public override void Attack()
@@ -48,7 +48,7 @@ public class Zombie : Enemy
         if (collision.gameObject.tag == "Player" && attackTimer < 0 )
         {
             Attack();
-            Debug.Log("Touching Player");
+            
             attackTimer = 5;
         }
        

@@ -12,9 +12,14 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected Rigidbody2D rb;
 
+    [Header("Enemy Animator")]
+    public Animator enemyAnimator;
+    [Header("Item")]
+    public GameObject item;
      public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        FindTarget();
     }
 
     private void FixedUpdate()
@@ -22,6 +27,7 @@ public abstract class Enemy : MonoBehaviour
         FindTarget();
         if (health <= 0)
         {
+            DropItem(30);
             Destroy(gameObject);
         }
     }
@@ -81,5 +87,27 @@ public abstract class Enemy : MonoBehaviour
             target = targetsTemp[0];
         }
     }
-  
+
+
+    public void DropItem(int goldAmount)
+    {
+        int randomNum = Random.Range(0, 10);
+        if (randomNum < 4)
+        {
+            GameObject droppedItem = Instantiate(item, gameObject.transform.position, Quaternion.identity);
+            if (randomNum <= 2)
+            {
+                droppedItem.GetComponent<PickUps>().itemType = ItemType.Gold;
+                droppedItem.GetComponent<PickUps>().itemAmount = goldAmount;
+            } 
+            else
+            {
+                droppedItem.GetComponent<PickUps>().itemType = ItemType.Ammo;
+                droppedItem.GetComponent<PickUps>().itemAmount = goldAmount;
+            }
+
+            //Drop Item
+        }
+         
+    }
 }

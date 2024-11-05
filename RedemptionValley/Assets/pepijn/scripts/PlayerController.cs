@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,11 +13,14 @@ public class PlayerController : MonoBehaviour
 
     [Header("Health Bar")]
     public Slider playerHealthBar;
-
+    [Header("Stamina Bar")]
+    public Slider playerStaminaSlider;
     [Header("Economy")]
     public int playerMoney;
     public int playerSkillPoints;
     //this is the player controllerr everything that the player can do happens here.
+    [Header("Weapon")]
+    public WeaponClass playerWeaponClass;
 
     [Header("player variables")]
     [SerializeField]
@@ -75,6 +79,7 @@ public class PlayerController : MonoBehaviour
         if (isSprinting && stamina > 0)
         {
             rb.velocity = new Vector2(inputHorizontal * sprintSpeed * Time.fixedDeltaTime,inputVertical * sprintSpeed * Time.fixedDeltaTime);
+            playerStaminaSlider.value = stamina;
             stamina -= staminaLoss * Time.deltaTime;
         }
         else
@@ -84,6 +89,7 @@ public class PlayerController : MonoBehaviour
         if (stamina < 10 && !isSprinting)
         {
             stamina += staminaLoss * Time.deltaTime;
+            playerStaminaSlider.value = stamina;
         }
 
 
@@ -126,16 +132,28 @@ public class PlayerController : MonoBehaviour
         playerHealthBar.value = health;
     }
 
+    public void GetCurrentWeapon()
+    {  
+            playerWeaponClass = gameObject.GetComponentInChildren<WeaponClass>();
+    }
     public void ItemPickUp(int amountPickedUp, ItemType itemType)
     {
-        switch(itemType)
+        //Debug.LogWarning($"Item Type Found:{itemType}");
+        switch (itemType)
         {
             case ItemType.Gold:
                 playerMoney += amountPickedUp;
                 UpdateUI?.Invoke(itemType);
                 break;
             case ItemType.Ammo:
-                Debug.Log("No Refrence To The Current Weapon Yet!!");
+               
+                if (playerWeaponClass == null)
+                {
+                    GetCurrentWeapon();
+                }
+                playerWeaponClass.ammo += amountPickedUp;
+                UpdateUI?.Invoke(itemType);
+                //Debug.Log("No Refrence To The Current Weapon Yet!!");
                 break;
             case ItemType.SkillPoint:
                 playerSkillPoints += amountPickedUp;

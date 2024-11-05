@@ -105,6 +105,7 @@ MonoBehaviour:
   damage: 3
   target: {fileID: 0}
   rb: {fileID: 0}
+  item: {fileID: 4884536593985223392, guid: 3e772b986ccb1c7418e82d3ba0932778, type: 3}
   enemyAnimator: {fileID: 1934280011059520472}
   isTouchingPlayer: 0
   attackTimer: 0

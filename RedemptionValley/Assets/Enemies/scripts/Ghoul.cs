@@ -8,7 +8,11 @@ public class Ghoul : Enemy
     Transform spawnPoint;
     float endPoint;
 
-
+    private void Start()
+    {
+        direction = target.transform.position - transform.position;
+        direction = direction.normalized;
+    }
     public override void Attack()
     {
         target.GetComponent<PlayerController>().AddHealth(-damage);
@@ -20,13 +24,14 @@ public class Ghoul : Enemy
         
     }
 
-    void Update()
+    void Update()                                                
     {
-        if (target != null && direction.magnitude == 0)
-        {
-            direction = target.transform.position - transform.position;
-            direction = direction.normalized;
-        }
+        //if (target != null && !isTouchingWall )//&& direction.magnitude <= 0)
+        //{
+        //    direction = target.transform.position - transform.position;
+        //    direction = direction.normalized;
+          
+        //} 
         Move();
     }
 
@@ -36,5 +41,24 @@ public class Ghoul : Enemy
         {
             Attack();
         }
+        
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        direction = target.transform.position - transform.position;
+        direction = direction.normalized;
+        //if (collision.gameObject.layer == 9)
+        //{
+        //    isTouchingWall = true;
+        //}
+        // Vector2 surfaceNormal = collision.contacts[0].normal;
+        // direction = Vector2.Reflect(direction.normalized, surfaceNormal);
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        //if (collision.gameObject.layer == 9)
+        //{
+        //    isTouchingWall = false;
+        //}
     }
 }

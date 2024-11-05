@@ -16,7 +16,10 @@ public class Mage : Enemy
     float spellCDValue;
     float spellCD;
 
-
+    private void Start()
+    {
+        FindTarget();
+    }
     public override void Attack()
     {
         if (spellCD <= 0)
@@ -39,20 +42,25 @@ public class Mage : Enemy
         {
             Vector2 temp = target.transform.position - transform.position;
             temp = temp.normalized;
+            enemyAnimator.SetFloat("y", temp.y);
+            enemyAnimator.SetFloat("x", temp.x);
             rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
         }
         else
         {
             Vector2 temp = target.transform.position + transform.position;
             temp = temp.normalized;
+           
             rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
         }
+        
     }
 
 
 
     private void Update()
     {
+
         Move();
         Attack();
     }

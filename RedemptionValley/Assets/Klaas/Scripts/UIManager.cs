@@ -39,7 +39,6 @@ public class UIManager : MonoBehaviour
 
         UpdateMoney();
     }
-
     public void UpdateMoney()
     {
         moneyText.text = $"{playerController.playerMoney}";

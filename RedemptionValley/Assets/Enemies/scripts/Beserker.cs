@@ -37,6 +37,8 @@ public class Beserker : Enemy
         {
             Vector2 temp = target.transform.position - transform.position;
             temp = temp.normalized;
+            enemyAnimator.SetFloat("y", temp.y);
+            enemyAnimator.SetFloat("x", temp.x);
             rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
             chargeCd -= Time.deltaTime;
         }
