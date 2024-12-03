@@ -11,8 +11,13 @@ public class PlayerController : MonoBehaviour
     public static event HandleUIUpdate UpdateUI;
     public delegate void HandleUIUpdate(ItemType itemType);
 
+    public static event HandlePlayerDeath OnPlayerDeath;
+    public delegate void HandlePlayerDeath();
+
+     
     [Header("Health Bar")]
     public Slider playerHealthBar;
+    public bool isPlayerAlive = true;
     [Header("Stamina Bar")]
     public Slider playerStaminaSlider;
     [Header("Economy")]
@@ -29,8 +34,7 @@ public class PlayerController : MonoBehaviour
     float sprintSpeed;
     [SerializeField]
     float health;
-    [SerializeField]
-    float stamina;
+    public float stamina;
     [SerializeField]
     float staminaLoss;
     [SerializeField]
@@ -65,6 +69,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
+        if(health <= 0 && isPlayerAlive)
+        {
+            isPlayerAlive = false;  
+            OnPlayerDeath?.Invoke();
+        }
     }
 
     public void FixedUpdate()
@@ -162,6 +171,11 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void StopAllMovement()
+    {
+        rb.velocity = new Vector2(0,0);
     }
 
 }

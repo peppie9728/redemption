@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public abstract class Enemy : MonoBehaviour
 {
+    public static event HandleEnemyDeath OnEnemyDeath;
+    public delegate void HandleEnemyDeath(int points);
+
+
     public float health;
     public float moveSpeed;
     public float damage;
@@ -27,6 +31,7 @@ public abstract class Enemy : MonoBehaviour
         FindTarget();
         if (health <= 0)
         {
+            OnEnemyDeath?.Invoke(10);
             DropItem(30);
             Destroy(gameObject);
         }

@@ -50,11 +50,12 @@ public class WeaponStore : MonoBehaviour
 
             storeBackground.gameObject.SetActive(true);
             playerController = collision.gameObject.GetComponent<PlayerController>();
+            playerController.StopAllMovement();
             playerController.enabled = false;
 
             SetUpgradeText();
 
-            eventSystem.firstSelectedGameObject = BuyAmmoButton;
+            eventSystem.SetSelectedGameObject(BuyAmmoButton);
         }
     }
     

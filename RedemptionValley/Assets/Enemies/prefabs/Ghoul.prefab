@@ -102,10 +102,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
-  moveSpeed: 200
+  moveSpeed: 700
   damage: 10
   target: {fileID: 0}
   rb: {fileID: 0}
+  enemyAnimator: {fileID: 0}
   item: {fileID: 4884536593985223392, guid: 3e772b986ccb1c7418e82d3ba0932778, type: 3}
   direction: {x: 0, y: 0}
 --- !u!58 &6012321135190660343

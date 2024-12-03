@@ -54,6 +54,11 @@ public class Ghoul : Enemy
         // Vector2 surfaceNormal = collision.contacts[0].normal;
         // direction = Vector2.Reflect(direction.normalized, surfaceNormal);
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        direction = target.transform.position - transform.position;
+        direction = direction.normalized;
+    }
     private void OnCollisionExit2D(Collision2D collision)
     {
         //if (collision.gameObject.layer == 9)

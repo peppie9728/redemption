@@ -48,8 +48,8 @@ public class Zombie : Enemy
         if (collision.gameObject.tag == "Player" && attackTimer < 0 )
         {
             Attack();
-            
-            attackTimer = 5;
+
+            attackTimer = 2.5f;
         }
        
     }

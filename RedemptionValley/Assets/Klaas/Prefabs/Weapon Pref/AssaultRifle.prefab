@@ -142,7 +142,7 @@ MonoBehaviour:
   grenadeTimer: 3
   grenadeCountDownT: 0
   grenadeBullet: {fileID: 5974495147777525974, guid: a2b9b9a2268f3d44aa75f9ed05c50631, type: 3}
-  flameThrower: {fileID: 0}
+  flameThrower: {fileID: 2427864347274255575}
   flameTimer: 0
   flameCountDownT: 0
 --- !u!1 &1263680820560282139
@@ -465,6 +465,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 007c57e2df8e9b144b99f471b84f3d56, type: 3}
+--- !u!198 &2427864347274255575 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198637950067575458, guid: 007c57e2df8e9b144b99f471b84f3d56, type: 3}
+  m_PrefabInstance: {fileID: 2553600273942484597}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2549174206492178151 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4584431484625042, guid: 007c57e2df8e9b144b99f471b84f3d56, type: 3}
