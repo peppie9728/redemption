@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376cb4cfce660144e84abd2918cb5e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootButton: 49
   weaponName: 
   weaponSprite: {fileID: 21300000, guid: f50065f209d81134382ae6fe02cd2260, type: 3}
   damage: 33

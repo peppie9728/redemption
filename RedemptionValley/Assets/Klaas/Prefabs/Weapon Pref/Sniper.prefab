@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c726119fb4dc5614cacf31bd58cdd231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootButton: 49
   weaponName: Sniper
   weaponSprite: {fileID: 21300000, guid: d3177cd2d2f65b34f9ad06ce3614a907, type: 3}
   damage: 15

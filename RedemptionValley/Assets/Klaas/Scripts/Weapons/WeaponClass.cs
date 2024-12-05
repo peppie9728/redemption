@@ -13,10 +13,13 @@ public abstract class WeaponClass : MonoBehaviour
     public static event HandleEnemyTransform OnClosestEnemy;
     public delegate void HandleEnemyTransform(Transform enemyPosition);
 
+    [Header("Input Info")]
+    [SerializeField] protected KeyCode shootButton;
+
     [Header("UI Info")]
     public string weaponName;
     public Sprite weaponSprite;
-
+   
     [Header("Weapon")]
     public int damage;
     public float fireRate = 5;

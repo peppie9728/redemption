@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [Header("Player Info")]
     [SerializeField] private bool isPOneReady;
     [SerializeField] private bool isPTwoRady;
+    [SerializeField] private string readyButtonPOne;
+    [SerializeField] private string readyButtonPTwo;
     public int points = 0;
 
     [Header("Enemy's")]
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour
     public bool spawningFinished = false;
 
     [Header("Wave Spawning")]
-    [SerializeField] int spawnDelay = 3;
+    [SerializeField] float spawnDelay = 3;
     public float breakTimer = 6;
     public float breakMaxTimer = 60;
 
@@ -45,6 +47,23 @@ public class GameManager : MonoBehaviour
     {
         PlayerController.OnPlayerDeath -= PlayerDeath;
     }
+
+    private void Awake()
+    {
+        try
+        {
+            if (PlayerPrefs.GetInt("hasBeenSaved") != 1)
+            {
+                SaveBaseEnemyStats();
+            }
+            else
+            {
+                SetBaseEnemyStats();
+            }
+        }
+        catch { SaveBaseEnemyStats(); }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,17 +71,32 @@ public class GameManager : MonoBehaviour
        StartCoroutine(SpawnEnemy());
     }
 
+   // bool hasEnemyBeenScaled = false;
+
     // Update is called once per frame
     private void Update()
     {
         if (spawningFinished == true && areSpawnersEmpty() == true)
         {
-            points += 10;
+           
+            //if(!hasEnemyBeenScaled)
+            //{
+            //    for (int i = 0; i < allEnemys.Length; i++)
+            //    {
+            //        allEnemys[i].GetComponent<Enemy>().ScaleEnemy();
+            //    }
+            //    hasEnemyBeenScaled=true;
+            //}
+
            breakTimer -= Time.deltaTime;
             if(breakTimer <= 0 || isPOneReady)
             {
+               points += 10;
+               // hasEnemyBeenScaled = false;
                 isPOneReady = false;
+                isPTwoRady = false;
                 currentWave++;
+                CheckCurrentWave();
                 StartCoroutine(SpawnEnemy());
                 breakTimer = breakMaxTimer;
             }
@@ -70,9 +104,13 @@ public class GameManager : MonoBehaviour
 
         pauseSpawning();
 
-        if(Input.GetKeyDown(KeyCode.K))
+        if(Input.GetKeyDown(readyButtonPOne))
         {
             isPOneReady=true;
+        }
+        if (Input.GetKeyDown(readyButtonPTwo))
+        {
+            isPTwoRady = true;
         }
 
     }
@@ -135,6 +173,8 @@ public class GameManager : MonoBehaviour
         maxEnemyCount = maxEnemyCount * 3;
         Debug.Log(maxEnemyCount);
         spawningFinished = true;
+        //CheckCurrentWave();
+
     }
     int spawnedInEnemys;
 
@@ -153,19 +193,38 @@ public class GameManager : MonoBehaviour
         else {return false; }
     }
 
+   [SerializeField] int waveToUpgrade;
     public void CheckCurrentWave()
     {
         switch(currentWave)
         {
-            case 5: maxChance = 70; 
+            case 5: maxChance = 70;
+                spawnDelay = 2;
+                ScaleEnemysPerRounds();
                 break;
             case 8: maxChance = 95;
+                spawnDelay = 0.5f;
+                ScaleEnemysPerRounds();
                 break;
             case 12: maxChance = 100;
+                ScaleEnemysPerRounds();
+                waveToUpgrade = currentWave + 2;
+
                 break;
         }
-    }
 
+        if(waveToUpgrade == currentWave)
+        {
+            ScaleEnemysPerRounds();
+        }
+    }
+    public void ScaleEnemysPerRounds()
+    {
+        for (int i = 0; i < allEnemys.Length; i++)
+        {
+            allEnemys[i].GetComponent<Enemy>().ScaleEnemy();
+        }
+    }
     public bool areSpawnersEmpty()
     {
         if (enemySpawners[0].childCount == 0 && enemySpawners[1].childCount == 0 && enemySpawners[2].childCount == 0 )
@@ -199,6 +258,32 @@ public class GameManager : MonoBehaviour
         waveSurvivedText.text += currentWave -= 1;
         deathImage.gameObject.SetActive(true);
         Time.timeScale = 0;
+
+    }
+
+    public void SaveBaseEnemyStats()
+    {
+        for (int i = 0; i < allEnemys.Length; i++)
+        {
+            //  allEnemys[i].
+            PlayerPrefs.SetFloat(allEnemys[i].name + "-damge", allEnemys[i].GetComponent<Enemy>().damage);
+            PlayerPrefs.SetFloat(allEnemys[i].name + "-health", allEnemys[i].GetComponent<Enemy>().health);
+
+            PlayerPrefs.SetInt("hasBeenSaved", 1);
+
+            Debug.Log($"{allEnemys[i].name} Damage: {PlayerPrefs.GetFloat(allEnemys[i].name + "-damge")}\n {allEnemys[i].name} Health: {PlayerPrefs.GetFloat(allEnemys[i].name + "-health")}" );
+        }
+    }
+    public void SetBaseEnemyStats()
+    {
+        for (int i = 0; i < allEnemys.Length; i++)
+        {
+            //  allEnemys[i].
+            allEnemys[i].GetComponent<Enemy>().damage = PlayerPrefs.GetFloat(allEnemys[i].name + "-damge");
+
+            allEnemys[i].GetComponent<Enemy>().health = PlayerPrefs.GetFloat(allEnemys[i].name + "-health");
+
+        }
 
     }
 }

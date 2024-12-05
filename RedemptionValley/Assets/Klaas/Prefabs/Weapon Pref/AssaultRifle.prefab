@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026c3d9206d4ee844804e6094c589b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootButton: 49
   weaponName: Assault Rifle
   weaponSprite: {fileID: 0}
   damage: 3

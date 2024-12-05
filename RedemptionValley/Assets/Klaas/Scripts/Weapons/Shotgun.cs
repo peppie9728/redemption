@@ -27,7 +27,7 @@ public class Shotgun : WeaponClass
             switch (currentUpgrade)
             {
                 case CurrentUpgrade.Basic:
-                    if (Input.GetButtonDown("Fire1"))
+                    if (Input.GetKeyDown(shootButton))
                     {
                         FireBasic(bullet);
                         timer = fireCoolDown / fireRate;
@@ -35,7 +35,7 @@ public class Shotgun : WeaponClass
                     break;
 
                 case CurrentUpgrade.UpdrageOne:
-                    if (Input.GetButton("Fire1"))
+                    if (Input.GetKey(shootButton))
                     {
                         FireSpread();
                         timer = fireCoolDown / fireRate;
@@ -43,7 +43,7 @@ public class Shotgun : WeaponClass
                     break;
 
                 case CurrentUpgrade.UpgradeTwo:
-                    if (Input.GetButtonDown("Fire1"))
+                    if (Input.GetKeyDown(shootButton))
                     {
                         FireSpread();
                         timer = fireCoolDown / fireRate;

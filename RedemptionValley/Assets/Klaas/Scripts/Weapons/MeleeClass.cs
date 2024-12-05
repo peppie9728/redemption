@@ -13,6 +13,8 @@ public class MeleeClass : MonoBehaviour
     public GameObject hitCollider;
     public float attackSpeed;
     public float meleeDamage;
+    public float meleeRange;
+
     public EdgeCollider2D upgCollider;
 
     [Header("Upgrade State")]

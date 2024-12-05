@@ -62,31 +62,45 @@ public class SkillTree : MonoBehaviour
         playerController.enabled = true;
     }
 
-    public void UpgradeMaxHealth(int cost)
-    {
-      //  int skillRequirement = Int32.Parse(RequirementAndCost.Split(',')[0]);
-      //  int cost = Int32.Parse(RequirementAndCost.Split(',')[1]);
-
-      // Debug.Log($"Skill Req={skillRequirement} - Cost={cost}");
-
-        if(playerController.playerSkillPoints >= cost)
+    [Header("Health Uograde Info")]
+    [SerializeField] private float healthCost = 1;
+    public void UpgradeMaxHealth()
+    {     
+        if(playerController.playerSkillPoints >= healthCost)
         {
-            playerController.playerHealthBar.maxValue += 50;
-            currentSkillAmount++;
-            Debug.Log("Skill Bought");
-            playerController.playerSkillPoints-= cost;
-            cost *= 2;
+            playerController.playerSkillPoints -= (Int32)healthCost;
+
+            float newValue = playerController.playerHealthBar.maxValue  / 1.5f * 2f;
+            newValue = Mathf.Round(newValue);
+
+            playerController.playerHealthBar.maxValue = newValue;
+            playerController.SetHealth(newValue);
+
+            healthCost = healthCost / 3 * 5;
+            healthCost = Mathf.Round(healthCost);
+
         } 
+        else
+        {
+           Debug.LogWarning($"Not Enough Points Need:{healthCost} - Current Points: {playerController.playerSkillPoints}");
+        }
+         Debug.LogWarning($"New Health: {playerController.GetHealth()} - HealthBar MaValue: {playerController.playerHealthBar.maxValue}");
 
     }
+
+    [Header("Melee Upgrade Info")] // not done yet
+    [SerializeField] private float meleeCost = 1;
     public void UpgradeMelee(int cost)
     {
         if (playerController.playerSkillPoints >= cost)
         {
-            playerMeleeClass.attackSpeed *= 2;
+            //playerMeleeClass.attackSpeed *= 2;
+
             playerMeleeClass.meleeDamage *= 2;
+
             currentSkillAmount++;
             playerController.playerSkillPoints -= cost;
+
             cost *= 2;
         }
     }

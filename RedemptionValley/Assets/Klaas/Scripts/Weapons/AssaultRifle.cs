@@ -32,7 +32,7 @@ public class AssaultRifle : WeaponClass
         }
 
         CheckTargets();
-        if (Input.GetButtonDown("Fire1") && ammo > 0)
+        if (Input.GetKeyDown(shootButton) && ammo > 0)
         {
             switch (currentUpgrade)
             {

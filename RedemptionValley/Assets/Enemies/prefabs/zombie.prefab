@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   moveSpeed: 70
-  damage: 10
+  damage: 15
   target: {fileID: 0}
   rb: {fileID: 0}
   enemyAnimator: {fileID: 1934280011059520472}

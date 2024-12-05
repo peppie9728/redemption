@@ -619,7 +619,7 @@ MonoBehaviour:
       - m_Target: {fileID: 454429885085364526}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: UpgradeMaxHealth
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1199,6 +1199,9 @@ MonoBehaviour:
   - {fileID: 4746852883569795358}
   skillBackground: {fileID: 1583779063408429084}
   eventSystem: {fileID: 0}
+  healthCost: 1
+  meleeCost: 1
+  stamineCost: 1
 --- !u!1 &1712170827751229751
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,6 @@ public abstract class Enemy : MonoBehaviour
     public static event HandleEnemyDeath OnEnemyDeath;
     public delegate void HandleEnemyDeath(int points);
 
-
     public float health;
     public float moveSpeed;
     public float damage;
@@ -24,6 +23,7 @@ public abstract class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         FindTarget();
+        //ScaleEnemy();
     }
 
     private void FixedUpdate()
@@ -93,7 +93,17 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    public void ScaleEnemy()
+    {
+        float damageToAdd = damage / 9 * 4;
+        damage += Mathf.Round(damageToAdd);
 
+        float healthToAdd = health / 8 * 4;
+        health += Mathf.Round(healthToAdd);
+
+        Debug.Log($"Current EnemyHealth:{health} - Current Enemy Damage:{damage}");
+
+    }
     public void DropItem(int goldAmount)
     {
         int randomNum = Random.Range(0, 10);
