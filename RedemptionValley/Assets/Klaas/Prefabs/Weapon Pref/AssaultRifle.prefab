@@ -134,7 +134,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   uiManager: {fileID: 0}
-  currentUpgrade: 1
+  currentUpgrade: 0
   test1: {fileID: 0}
   upgradeOneInfo: 
   upgradeTwoInfo: 

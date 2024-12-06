@@ -44,6 +44,8 @@ public class WeaponStore : MonoBehaviour
         
        if (collision.gameObject.tag == "Player")
         {
+            eventSystem.SetSelectedGameObject(BuyAmmoButton);
+
             Debug.Log("Collision");
             currentWeaponClass = collision.gameObject.GetComponentInChildren<WeaponClass>();   
             Debug.Log($"Current Weapon:{currentWeaponClass.weaponName}");
@@ -55,7 +57,6 @@ public class WeaponStore : MonoBehaviour
 
             SetUpgradeText();
 
-            eventSystem.SetSelectedGameObject(BuyAmmoButton);
         }
     }
     
@@ -95,15 +96,16 @@ public class WeaponStore : MonoBehaviour
         }
     }
 
+    [SerializeField] private int upgradeCost = 2500;    
     
-
     public void UpgradeOne()
     {
-        if (currentWeaponClass.currentUpgrade == CurrentUpgrade.Basic)
+        if (currentWeaponClass.currentUpgrade == CurrentUpgrade.Basic && playerController.playerMoney >= upgradeCost)
         {
+            playerController.playerMoney -= upgradeCost;
             eventSystem.SetSelectedGameObject(BuyAmmoButton);
             currentWeaponClass.UpgradeOne();
-
+            OnMoneyChange?.Invoke();
             uprgadeOneB.interactable = false;
             uprgadeTwoB.interactable = false;
         }
@@ -113,9 +115,10 @@ public class WeaponStore : MonoBehaviour
     {
         if (currentWeaponClass.currentUpgrade == CurrentUpgrade.Basic)
         {
-            
+            playerController.playerMoney -= upgradeCost;
             eventSystem.SetSelectedGameObject(BuyAmmoButton);
             // eventSystem.currentSelectedGameObject = BuyAmmoButton; 
+            OnMoneyChange?.Invoke();
             currentWeaponClass.UpgradeTwo();
             uprgadeTwoB.interactable = false;
             uprgadeOneB.interactable = false;
@@ -126,6 +129,9 @@ public class WeaponStore : MonoBehaviour
     {
         uprgadeOneB.GetComponentInChildren<TextMeshProUGUI>().text = currentWeaponClass.upNameOne;
         uprgadeTwoB.GetComponentInChildren<TextMeshProUGUI>().text = currentWeaponClass.upNameTwo;
+
+        upgradeOneT.text = "Price $" +upgradeCost;
+        upgradeTwoT.text = "Price $"+ upgradeCost;
     }
 
 }

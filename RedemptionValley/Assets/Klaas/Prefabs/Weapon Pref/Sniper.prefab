@@ -126,7 +126,7 @@ MonoBehaviour:
   upgradeTwoInfo: 
   upNameOne: 
   upNameTwo: 
-  explosiveBullet: {fileID: 0}
+  explosiveBullet: {fileID: 5974495147777525974, guid: a2b9b9a2268f3d44aa75f9ed05c50631, type: 3}
   armorPiercing: {fileID: 5974495147777525974, guid: c5502c366563d3f45af5083392c9321e, type: 3}
 --- !u!114 &7456787044745841671
 MonoBehaviour:

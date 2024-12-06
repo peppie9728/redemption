@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
         WeaponStore.OnAmmoAdd += UpdateAmmo;
         WeaponStore.OnMoneyChange += UpdateMoney;
         PlayerController.UpdateUI += UpdateUI;
+        SkillTree.OnPointsChange += UpdateSkillPoints;
     }
 
     private void Start()
@@ -57,6 +58,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateSkillPoints()
+    {
+        skillText.text = $"{playerController.playerSkillPoints}";
+    }
     public void GetPlayerController()
     {
         try
@@ -94,6 +99,7 @@ public class UIManager : MonoBehaviour
                 UpdateMoney();
                 break;
             case ItemType.SkillPoint:
+                UpdateSkillPoints();
                 Debug.Log("Function Still Needs To Be Added");
                 break;
             default:

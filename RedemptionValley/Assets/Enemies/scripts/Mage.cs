@@ -26,7 +26,7 @@ public class Mage : Enemy
         {
             GameObject firedBullet = Instantiate(spellPrefab, firePoint.position, firePoint.rotation);
             Rigidbody2D rb = firedBullet.GetComponent<Rigidbody2D>();
-
+            firedBullet.GetComponent<Spell>().damage = damage;
             Vector2 direction = (target.transform.position - firePoint.position).normalized;
             rb.AddForce(direction * spellForce, ForceMode2D.Impulse);
             spellCD = spellCDValue;

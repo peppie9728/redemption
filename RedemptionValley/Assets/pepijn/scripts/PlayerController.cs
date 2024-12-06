@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public int playerMoney;
     public int playerSkillPoints;
     //this is the player controllerr everything that the player can do happens here.
+
     [Header("Weapon")]
     public WeaponClass playerWeaponClass;
 
@@ -60,6 +61,13 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         PickUps.OnPickUp += ItemPickUp;
+        GameManager.OnPickUp += ItemPickUp;
+    }
+
+    private void OnDisable()
+    {
+        PickUps.OnPickUp -= ItemPickUp;
+        GameManager.OnPickUp -= ItemPickUp;
     }
     private void Awake()
     {
@@ -172,7 +180,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-
+    // upgrade function voor wapen damage
     public void StopAllMovement()
     {
         rb.velocity = new Vector2(0,0);

@@ -25,6 +25,7 @@ public abstract class WeaponClass : MonoBehaviour
     public float fireRate = 5;
     public float fireCoolDown = 1f;
     public float timer;
+
     [Header("Ammo")]
     [Range(0,9999)]public int ammo;
     //public int minAmmo;
@@ -36,8 +37,9 @@ public abstract class WeaponClass : MonoBehaviour
     public Transform firePoint;
     public GameObject fireSprite;
     public float bulletLifeTime;
+
     [Header("Target")]
-    [SerializeField]private Transform dontAsk;
+    [SerializeField] private Transform dontAsk;
     public Transform fireTarget;
     public Collider2D[] hitColliders;
     public LayerMask layerMask;

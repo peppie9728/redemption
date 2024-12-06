@@ -5,8 +5,12 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 public class SkillTree : MonoBehaviour
 {
+    public static event HandleUIHealthChange OnPointsChange;
+    public delegate void HandleUIHealthChange();
+
     [Header("Player")]
     public PlayerController playerController;
     [SerializeField] private MeleeClass playerMeleeClass;
@@ -64,11 +68,13 @@ public class SkillTree : MonoBehaviour
 
     [Header("Health Uograde Info")]
     [SerializeField] private float healthCost = 1;
+    [SerializeField] private TextMeshProUGUI healthText;
     public void UpgradeMaxHealth()
     {     
         if(playerController.playerSkillPoints >= healthCost)
         {
             playerController.playerSkillPoints -= (Int32)healthCost;
+            OnPointsChange?.Invoke();
 
             float newValue = playerController.playerHealthBar.maxValue  / 1.5f * 2f;
             newValue = Mathf.Round(newValue);
@@ -78,6 +84,7 @@ public class SkillTree : MonoBehaviour
 
             healthCost = healthCost / 3 * 5;
             healthCost = Mathf.Round(healthCost);
+            healthText.text = healthCost.ToString();
 
         } 
         else
@@ -90,29 +97,36 @@ public class SkillTree : MonoBehaviour
 
     [Header("Melee Upgrade Info")] // not done yet
     [SerializeField] private float meleeCost = 1;
-    public void UpgradeMelee(int cost)
+    [SerializeField] private TextMeshProUGUI meleeText;
+    public void UpgradeMelee()
     {
-        if (playerController.playerSkillPoints >= cost)
+        if (playerController.playerSkillPoints >= meleeCost)
         {
             //playerMeleeClass.attackSpeed *= 2;
-
-            playerMeleeClass.meleeDamage *= 2;
-
+            OnPointsChange?.Invoke();
+            //playerMeleeClass.meleeDamage *= 2;
+            playerMeleeClass.UpgradeMeleeDamage();
             currentSkillAmount++;
-            playerController.playerSkillPoints -= cost;
+            playerController.playerSkillPoints -= (Int32)meleeCost;
+            OnPointsChange?.Invoke();
+            meleeCost = meleeCost / 3 * 5;
+            meleeCost = Mathf.Round(meleeCost);
 
-            cost *= 2;
+            meleeText.text = meleeCost.ToString();
         }
     }
 
     [Header("Stamine Upgrade Info")]
     [SerializeField] private float stamineCost = 1;
+    [SerializeField] private TextMeshProUGUI stamineText;
     public void UpgradeMaxStamina()
     {
        
         if (playerController.playerSkillPoints >= stamineCost)
         {
+
             playerController.playerSkillPoints -= (Int32)stamineCost;
+            OnPointsChange?.Invoke();
 
             float newValue = playerController.playerStaminaSlider.maxValue / 3 * 5;
             newValue = MathF.Round(newValue);
@@ -122,6 +136,8 @@ public class SkillTree : MonoBehaviour
 
             stamineCost = stamineCost / 3 * 5;
             stamineCost = MathF.Round(stamineCost);
+
+            stamineText.text = stamineCost.ToString();
             
         } 
         else
@@ -131,5 +147,7 @@ public class SkillTree : MonoBehaviour
 
          Debug.LogWarning($"Current Max Slider Value: {playerController.playerStaminaSlider.maxValue} - Current Player Stamina: {playerController.stamina}");
     }
+
+
 
 }

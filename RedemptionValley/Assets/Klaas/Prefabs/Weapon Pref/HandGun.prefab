@@ -123,8 +123,8 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   currentUpgrade: 0
   test1: {fileID: 0}
-  upgradeOneInfo: 
-  upgradeTwoInfo: 
+  upgradeOneInfo: Do more damage but slower fire rate
+  upgradeTwoInfo: Shoot faster with a special bullet type
   upNameOne: 
   upNameTwo: 
   bulletUpdrageOne: {fileID: 0}
