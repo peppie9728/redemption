@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 487269562714463302}
   - component: {fileID: -2310956488858999854}
   - component: {fileID: 6849096636793686670}
+  - component: {fileID: -7791856846559533145}
   m_Layer: 6
   m_Name: Mage
   m_TagString: Untagged
@@ -107,6 +108,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   enemyAnimator: {fileID: 6849096636793686670}
   item: {fileID: 4884536593985223392, guid: 3e772b986ccb1c7418e82d3ba0932778, type: 3}
+  agent: {fileID: -7791856846559533145}
   spellPrefab: {fileID: 8523256270346370165, guid: 2c76488cc54364b4581c0565223a9570, type: 3}
   firePoint: {fileID: 3767465800503542957}
   distanceToKeep: 5
@@ -195,3 +197,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &-7791856846559533145
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627768243326473393}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.1
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 4
+  m_BaseOffset: 2
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

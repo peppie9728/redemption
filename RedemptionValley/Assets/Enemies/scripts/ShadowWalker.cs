@@ -27,6 +27,8 @@ public class ShadowWalker : Enemy
             temp = temp.normalized;
             enemyAnimator.SetFloat("y", temp.y);
             enemyAnimator.SetFloat("x", temp.x);
+           // agent.SetDestination(target.transform.position);
+            //agent.
             rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
             TpCd -= Time.deltaTime;
         }

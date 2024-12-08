@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Worlds/The Underground.unity
     guid: 20f7f3128fb04404fa698fb30f439a5c
   - enabled: 1
-    path: Assets/Scenes/Worlds/Mountains.unity
-    guid: fee322d95d2fc934a9213f8d49ccd9fe
+    path: Assets/Scenes/Worlds/The Mountains.unity
+    guid: e480afe35136f6e41b8aaf856abd0e22
   m_configObjects: {}

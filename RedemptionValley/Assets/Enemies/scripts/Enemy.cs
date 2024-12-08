@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.AI;
 public abstract class Enemy : MonoBehaviour
 {
     public static event HandleEnemyDeath OnEnemyDeath;
@@ -19,8 +20,16 @@ public abstract class Enemy : MonoBehaviour
     public Animator enemyAnimator;
     [Header("Item")]
     public GameObject item;
+
+    [Header("Nav Mesh")]
+   [SerializeField] protected NavMeshAgent agent;
+
      public void Awake()
     {
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.speed = moveSpeed; 
+
         rb = GetComponent<Rigidbody2D>();
         FindTarget();
         //ScaleEnemy();

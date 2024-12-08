@@ -338,14 +338,29 @@ public class GameManager : MonoBehaviour
     }
     public bool areSpawnersEmpty()
     {
-        if (enemySpawners[0].childCount == 0 && enemySpawners[1].childCount == 0 && enemySpawners[2].childCount == 0)
+
+        for (int i = 0; i < enemySpawners.Length; i++)
         {
-            return true;
+            if (enemySpawners[i].childCount != 0)
+            {
+                return false;
+            }
+            else
+            {
+                // return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+
+        return true;
+    
+        //if (enemySpawners[0].childCount == 0 && enemySpawners[1].childCount == 0 && enemySpawners[2].childCount == 0)
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
     }
 
     public void UpdateWaveText()

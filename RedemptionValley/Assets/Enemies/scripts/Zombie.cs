@@ -19,7 +19,14 @@ public class Zombie : Enemy
         {
             Vector2 temp = target.transform.position - transform.position;
             temp = temp.normalized;
-            rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
+         //   try
+           // {
+               //agent.SetDestination(target.transform.position);
+           // }
+          //  catch
+          //  {
+                rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
+           // }
             enemyAnimator.SetFloat("y", temp.y);
             enemyAnimator.SetFloat("x", temp.x);
         }   

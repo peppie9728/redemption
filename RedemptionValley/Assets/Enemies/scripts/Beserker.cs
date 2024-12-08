@@ -10,6 +10,8 @@ public class Beserker : Enemy
     public float chargeUpTimeValue;
     public float chargeSpeed;
 
+    public float navMeshSpeed;
+
     float chargeUpTime;
     bool hasCharged;
     bool isCharging;
@@ -17,11 +19,19 @@ public class Beserker : Enemy
     Vector2 startPos;
     private void Awake()
     {
-        base.Awake();
+        base.Awake();    
+       // agent.updateRotation = false;
+       // agent.updateUpAxis = false;
+       // agent.speed = moveSpeed;
         chargeCd = chargeCdValue;
         chargeUpTime = chargeUpTimeValue;
     }
-
+    private void Start()
+    {
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.speed = navMeshSpeed;
+    }
     private void Update()
     {
         Move();
@@ -39,7 +49,14 @@ public class Beserker : Enemy
             temp = temp.normalized;
             enemyAnimator.SetFloat("y", temp.y);
             enemyAnimator.SetFloat("x", temp.x);
-            rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
+          //  try
+          //  {
+              // agent.SetDestination(target.transform.position);
+           // }
+          //  catch
+          //  {
+                rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
+           // }
             chargeCd -= Time.deltaTime;
         }
         else

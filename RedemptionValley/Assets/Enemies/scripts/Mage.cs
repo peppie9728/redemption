@@ -44,14 +44,15 @@ public class Mage : Enemy
             temp = temp.normalized;
             enemyAnimator.SetFloat("y", temp.y);
             enemyAnimator.SetFloat("x", temp.x);
-            rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
+             rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
+           //agent.SetDestination(target.transform.position - transform.position);
         }
         else
         {
             Vector2 temp = target.transform.position + transform.position;
             temp = temp.normalized;
-           
-            rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
+            agent.SetDestination(target.transform.position + transform.position);
+           //rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
         }
         
     }

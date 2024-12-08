@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2409126168693554801}
   - component: {fileID: 8689983000814644968}
   - component: {fileID: 6217363592186359124}
+  - component: {fileID: -1678063320446381605}
   m_Layer: 6
   m_Name: Beserker
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2179947064970858064}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6180478, y: -0.11095496, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101,15 +102,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  moveSpeed: 50
+  moveSpeed: 120
   damage: 60
   target: {fileID: 0}
   rb: {fileID: 0}
   enemyAnimator: {fileID: 6217363592186359124}
   item: {fileID: 4884536593985223392, guid: 3e772b986ccb1c7418e82d3ba0932778, type: 3}
+  agent: {fileID: -1678063320446381605}
   chargeCdValue: 4
   chargeUpTimeValue: 2
   chargeSpeed: 120
+  navMeshSpeed: 1
 --- !u!50 &2409126168693554801
 Rigidbody2D:
   serializedVersion: 4
@@ -125,7 +128,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -193,3 +196,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &-1678063320446381605
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2179947064970858064}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.63
+  m_Speed: 3.5
+  m_Acceleration: 22.98
+  avoidancePriority: 50
+  m_AngularSpeed: 52.4
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2.64
+  m_BaseOffset: 2
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
