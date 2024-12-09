@@ -51,8 +51,8 @@ public class Mage : Enemy
         {
             Vector2 temp = target.transform.position + transform.position;
             temp = temp.normalized;
-            agent.SetDestination(target.transform.position + transform.position);
-           //rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
+           // agent.SetDestination(target.transform.position + transform.position);
+           rb.velocity = new Vector2(temp.x * moveSpeed * Time.fixedDeltaTime, temp.y * moveSpeed * Time.fixedDeltaTime);
         }
         
     }

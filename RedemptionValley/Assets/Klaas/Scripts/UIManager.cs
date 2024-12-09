@@ -39,6 +39,8 @@ public class UIManager : MonoBehaviour
         //  ammoText.text = $"{currentWeapon.ammo}";
 
         UpdateMoney();
+        UpdateAmmo();
+        UpdateSkillPoints();
     }
     public void UpdateMoney()
     {

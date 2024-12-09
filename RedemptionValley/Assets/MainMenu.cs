@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
+
 
 public class MainMenu : MonoBehaviour
 {
@@ -14,6 +17,13 @@ public class MainMenu : MonoBehaviour
 
     [Header("Map Selection")]
     [SerializeField] private GameObject mapSelectionBG;
+
+
+    private void Awake()
+    {
+       Cursor.lockState = CursorLockMode.Locked;
+       Cursor.visible = false;
+    }
 
     // Start is called before the first frame update
     void Start()

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using System;
+using System.Threading.Tasks;
 
 public class PlayerController : MonoBehaviour
 {
@@ -74,20 +75,44 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         meleeClass = gameObject.GetComponent<MeleeClass>();
     }
-    private void Update()
+    bool isPlayingDeathAni = false;
+    private async void Update()
     {
         HandleMovement();
-        if(health <= 0 && isPlayerAlive)
+        if(health <= 0 && isPlayerAlive && !isPlayingDeathAni)
         {
-            isPlayerAlive = false;  
+
+            GetCurrentWeapon();
+            Destroy(playerWeaponClass.gameObject);
+
+           playerAnimator.SetBool("isPlayerDead", isPlayerAlive);
+             //yield return new WaitForSeconds(2);
+            isPlayingDeathAni=true;
+            await Task.Delay(1650);
+            isPlayerAlive = false;
             OnPlayerDeath?.Invoke();
+            // StartCoroutine(PlayerDeath());
+            // isPlayingDeathAni = true;
+
         }
     }
+   public IEnumerator PlayerDeath()
+    {
+        Destroy(playerWeaponClass.gameObject);
 
+        playerAnimator.SetBool("isPlayerDead", isPlayerAlive);
+        yield return new WaitForSeconds(2);
+        
+
+        isPlayerAlive = false;
+        OnPlayerDeath?.Invoke();
+    }
     public void FixedUpdate()
     {
-        Move();
-       
+        if (isPlayerAlive)
+        {
+            Move();
+        }
     }
 
     public void Move()

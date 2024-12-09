@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public static event HandleItemPickup OnPickUp;
     public delegate void HandleItemPickup(int Amount, ItemType itemType);
 
-
+    public EventSystem eventSystem;
     [Header("Player Info")]
     [SerializeField] private bool isPOneReady;
     [SerializeField] private bool isPTwoRady;
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         }
         catch { SaveBaseEnemyStats(); }
 
-
+        eventSystem = GameObject.FindObjectOfType<EventSystem>();
     }
 
     // Start is called before the first frame update
@@ -94,7 +94,14 @@ public class GameManager : MonoBehaviour
     {
         if (spawningFinished == true && areSpawnersEmpty() == true)
         {
-
+            if (Input.GetKeyDown(readyButtonPOne))
+            {
+                isPOneReady = true;
+            }
+            if (Input.GetKeyDown(readyButtonPTwo))
+            {
+                isPTwoRady = true;
+            }
             //if(!hasEnemyBeenScaled)
             //{
             //    for (int i = 0; i < allEnemys.Length; i++)
@@ -108,8 +115,10 @@ public class GameManager : MonoBehaviour
                 CheckCurrentWave();
                 StartCoroutine(FadeInBreakTimer());
             }
+
             breakText.text = Mathf.Round(breakTimer).ToString();
             breakTimer -= Time.deltaTime;
+
             if (breakTimer <= 0 || isPOneReady)
             {
                 StartCoroutine(FadeBreakTimer());
@@ -131,14 +140,12 @@ public class GameManager : MonoBehaviour
 
         pauseSpawning();
 
-        if (Input.GetKeyDown(readyButtonPOne))
+        if(Input.GetKeyDown(KeyCode.Alpha4) && !isGamePaused && !isSkillTreeOpen && !isShopOpen && hasWeaponBeenSelected)
         {
-            isPOneReady = true;
+            PauseGame();
         }
-        if (Input.GetKeyDown(readyButtonPTwo))
-        {
-            isPTwoRady = true;
-        }
+        
+       
 
     }
     [Header("Break Timer UI")]
@@ -352,7 +359,7 @@ public class GameManager : MonoBehaviour
         }
 
         return true;
-    
+
         //if (enemySpawners[0].childCount == 0 && enemySpawners[1].childCount == 0 && enemySpawners[2].childCount == 0)
         //{
         //    return true;
@@ -363,6 +370,29 @@ public class GameManager : MonoBehaviour
         //}
     }
 
+    [Header("Pause Game")]
+    public bool isGamePaused = false;
+    public GameObject pauseScreen;
+    public GameObject continueB;
+    public bool isSkillTreeOpen = false;
+    public bool isShopOpen = false;
+    public bool hasWeaponBeenSelected = false;
+    public void PauseGame()
+    {
+        if (!isGamePaused)
+        {
+            eventSystem.SetSelectedGameObject(continueB);
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0;
+            isGamePaused = true;
+        }
+        else
+        {
+            pauseScreen.SetActive(false);
+            Time.timeScale = 1;
+            isGamePaused = false;
+        }
+    }
     public void UpdateWaveText()
     {
         waveText.text = currentWave.ToString();
@@ -380,6 +410,7 @@ public class GameManager : MonoBehaviour
          * Add Death Animation
          * 
          */
+       
         GameObject.FindObjectOfType<EventSystem>().SetSelectedGameObject(restartButton.gameObject);
         pointsText.text += points;
         waveSurvivedText.text += currentWave -= 1;

@@ -609,7 +609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -69, y: -152.9307}
+  m_AnchoredPosition: {x: -69, y: -107.8}
   m_SizeDelta: {x: 104.2741, y: 65.5985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2622805551645883586
@@ -858,7 +858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2817392704909150942
 RectTransform:
   m_ObjectHideFlags: 0
@@ -932,7 +932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 482704469595669988}
     m_SelectOnDown: {fileID: 4977109997102528820}
@@ -958,7 +958,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 724505283455921106}
   m_OnClick:
     m_PersistentCalls:
@@ -1414,12 +1414,19 @@ MonoBehaviour:
   - {fileID: 4746852883569795358}
   skillBackground: {fileID: 1583779063408429084}
   eventSystem: {fileID: 0}
+  gameManager: {fileID: 0}
   healthCost: 1
   healthText: {fileID: 5671943322166998040}
   meleeCost: 1
   meleeText: {fileID: 7685974237429682129}
   stamineCost: 1
   stamineText: {fileID: 7280823197872549011}
+  gunCost: 1
+  gunText: {fileID: 8236173906027251989}
+  moneyCost: 1
+  moneyText: {fileID: 1206866470526191111}
+  skillCost: 8
+  skillText: {fileID: 4503359545117587982}
 --- !u!1 &1604480890495498829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,6 +1537,7 @@ RectTransform:
   - {fileID: 7685922093155102637}
   - {fileID: 8648858449724639674}
   - {fileID: 2986273263176662250}
+  - {fileID: 3570550230575845232}
   - {fileID: 5662003695139346912}
   - {fileID: 2817392704909150942}
   m_Father: {fileID: 426571767310559070}
@@ -2111,9 +2119,9 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 4746852883569795358}
-    m_SelectOnDown: {fileID: 2061250323943797741}
-    m_SelectOnLeft: {fileID: 1934650182943836230}
-    m_SelectOnRight: {fileID: 2061250323943797741}
+    m_SelectOnDown: {fileID: 4977109997102528820}
+    m_SelectOnLeft: {fileID: 4977109997102528820}
+    m_SelectOnRight: {fileID: 6592954484602984407}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2277,7 +2285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 86, y: -152}
+  m_AnchoredPosition: {x: 86, y: -106.86931}
   m_SizeDelta: {x: 104.2741, y: 65.5985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1935940706693456577
@@ -2365,7 +2373,7 @@ MonoBehaviour:
       - m_Target: {fileID: 454429885085364526}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: UpgradeMaxStamina
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3118,11 +3126,11 @@ RectTransform:
   - {fileID: 6562042445450858636}
   - {fileID: 7274909743138182189}
   - {fileID: 2004479405305944862}
-  m_Father: {fileID: 8648858449724639674}
+  m_Father: {fileID: 3359756335955902101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 79}
+  m_AnchoredPosition: {x: 85.00001, y: 52.13068}
   m_SizeDelta: {x: 104.2741, y: 65.5985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7174934412192628659
@@ -3178,7 +3186,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 2061250323943797741}
+    m_SelectOnUp: {fileID: 482704469595669988}
     m_SelectOnDown: {fileID: 376858646074971540}
     m_SelectOnLeft: {fileID: 4977109997102528820}
     m_SelectOnRight: {fileID: 0}
@@ -3207,13 +3215,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 454429885085364526}
+        m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
+        m_MethodName: UpgradeMonayGain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3467,7 +3475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -69, y: -73.0307}
+  m_AnchoredPosition: {x: -69, y: -27.900005}
   m_SizeDelta: {x: 104.2741, y: 65.5985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7966591216075938970
@@ -3555,7 +3563,7 @@ MonoBehaviour:
       - m_Target: {fileID: 454429885085364526}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: UpgradeMelee
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4327,7 +4335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70.00001, y: 11.999994}
+  m_AnchoredPosition: {x: -70.00001, y: 57.13069}
   m_SizeDelta: {x: 104.2741, y: 65.5985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3399279759821348685
@@ -4383,7 +4391,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 1934650182943836230}
+    m_SelectOnUp: {fileID: 482704469595669988}
     m_SelectOnDown: {fileID: 1716285442006033960}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 6592954484602984407}
@@ -4412,13 +4420,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 454429885085364526}
+        m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
+        m_MethodName: UpgradeSkillPointGain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4441,7 +4449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &719105862839173297
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4577,7 +4585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4185489032535302331
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4776,9 +4784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1
-
-'
+  m_text: 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: f629c6e43dba4bf38cb74d8860150664, type: 2}
@@ -4940,7 +4946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5662003695139346912
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5014,7 +5020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 482704469595669988}
     m_SelectOnDown: {fileID: 6592954484602984407}
@@ -5040,7 +5046,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 5458499094942501184}
   m_OnClick:
     m_PersistentCalls:
@@ -5993,12 +5999,11 @@ RectTransform:
   - {fileID: 2711812024707371646}
   - {fileID: 5628983833984035359}
   - {fileID: 5714303742048183546}
-  - {fileID: 3570550230575845232}
   m_Father: {fileID: 3359756335955902101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 84, y: -72}
+  m_AnchoredPosition: {x: 84, y: -26.869305}
   m_SizeDelta: {x: 104.2741, y: 65.5985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3150828975325925506
@@ -6083,13 +6088,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 454429885085364526}
+        m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
+        m_MethodName: UpgradeGunDamage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -32,11 +32,13 @@ public class WeaponStore : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgradeTwoT;
 
     [Header("EventSystem")]
-    [SerializeField] EventSystem eventSystem;
-
+    [SerializeField] private EventSystem eventSystem;
+    [Header("GameManager")]
+    [SerializeField] private GameManager gameManager;
     public void Start()
     {
         eventSystem = FindObjectOfType<EventSystem>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,6 +46,7 @@ public class WeaponStore : MonoBehaviour
         
        if (collision.gameObject.tag == "Player")
         {
+            gameManager.isShopOpen = true;
             eventSystem.SetSelectedGameObject(BuyAmmoButton);
 
             Debug.Log("Collision");
@@ -62,6 +65,7 @@ public class WeaponStore : MonoBehaviour
     
     public void CloseShop()
     {
+        gameManager.isShopOpen=false;
         storeBackground.gameObject.SetActive(false);
         playerController.enabled = true;
     }
